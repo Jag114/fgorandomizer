@@ -1,0 +1,43 @@
+{
+    "servants":
+    [
+        {
+            "id":1,
+            "name":"Mash",
+            "icon":"Mash.webp",
+            "class":"Shielder",
+            "rarity":"⋆⋆⋆ / ⋆⋆⋆⋆"
+        },
+    
+        {
+            "id":2,
+            "name":"Arthuria",
+            "icon":"Arthuria.webp",
+            "class":"Saber",
+            "rarity":"⋆⋆⋆⋆⋆"
+        },
+        {
+            "id":3,
+            "name":"Arthuria (Alter)",
+            "icon":"ArthuriaAlter.webp",
+            "class":"Saber",
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":4,
+            "name":"Arthuria (Lily)",
+            "icon":"ArthuriaLily.webp",
+            "class":"Saber",
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":5,
+            "name":"Nero",
+            "icon":"Nero.webp",
+            "class":"Saber",
+            "rarity":"⋆⋆⋆⋆"
+        }
+    ]
+}

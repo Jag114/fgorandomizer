@@ -1,0 +1,20 @@
+body{
+    margin: 0;
+}
+
+.button{
+    float:left;
+    border: none;
+    background-color: gold;
+    font-weight: bold;
+}
+
+.buttonHolder{
+    height: 10px;
+    margin-left: 278px;
+    margin-top: 20px;
+}
+
+.party{
+    height: 230px;
+}
