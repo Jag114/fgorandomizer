@@ -3,14 +3,15 @@ import React from 'react';
 import { useState } from "react"
 
 
-function Servant () {
+function Servant (props) {
 
   const [ servant, setServant ] = useState({
     id: 0,
     name: "Servant",
     icon: "Arthuria.webp",
     class: "Class",
-    rarity: "⋆?"
+    rarity: "⋆?",
+    key: null
   })
 
   const handleClickSingle = () => {
@@ -27,14 +28,14 @@ function Servant () {
         }))
       })
   };
-
+  
   return (
     <div className='servantContainer'>
-      <div className='servantName'> {servant.name} </div>
-      <img src={`./icons/${servant.icon}`} alt='arthuria' width='100' height='100' className='servantIcon'></img>
-      <div className='servantClass'>  {servant.class} </div>
-      <div className='servantRarity'>  {servant.rarity}</div>
-      <button onClick={handleClickSingle} className='randomizeB'> Randomize </button>
+      <div className='servantName'> {props.servantInfo.name} </div>
+      <img src={`./icons/${props.servantInfo.icon}`} alt='arthuria' width='100' height='100' className='servantIcon'></img>
+      <div className='servantClass'>  {props.servantInfo.class} </div>
+      <div className='servantRarity'>  {props.servantInfo.rarity}</div>
+      <button onClick={props.handleClick} className='randomizeB'> Randomize </button>
     </div>
   );
 

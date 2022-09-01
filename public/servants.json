@@ -36,8 +36,32 @@
             "id":5,
             "name":"Nero",
             "icon":"Nero.webp",
-            "class":"Saber",
+            "class":"Saber", 
             "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":6,
+            "name":"Siegfried",
+            "icon":"Siegfried.webp",
+            "class":"Saber", 
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":7,
+            "name":"Caesar",
+            "icon":"Caesar.webp",
+            "class":"Saber", 
+            "rarity":"⋆⋆⋆"
+        },
+
+        {
+            "id":8,
+            "name":"Altera",
+            "icon":"Altera.webp",
+            "class":"Saber", 
+            "rarity":"⋆⋆⋆⋆⋆"
         }
     ]
 }
