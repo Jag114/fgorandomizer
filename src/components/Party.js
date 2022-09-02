@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import './Party.css';
 import Servant from './Servant';
 
-function Party() {
+const Party = () => {
 
-  const [ servant, setServant ] = useState({
+  const servant = {
     id: 0,
     name: "Servant",
     icon: "Arthuria.webp",
     class: "Class",
     rarity: "⋆?",
-    key: null
-  })
+    key: 0
+  }
 
   const [ servantList, setServantList ] = useState([
     servant,servant,servant,servant,servant
@@ -36,33 +36,37 @@ function Party() {
             icon: data.servants[e].icon,
             class: data.servants[e].class,
             rarity: data.servants[e].rarity,
-            key: e
+            key: i
           }])
         })
       }) 
-
   };
 
-  const handleClickSingle = () => {
+  const handleClickSingle = (number) => { // if called before multi, bugged, idk why
+    console.log("Single click")
     fetch('servants.json')
       .then(response => response.json())
       .then(data => {
         let i = Math.floor(Math.random() * data.servants.length); 
-        setServant(({
-          id: data.servants[i].id,
-          name: data.servants[i].name,
-          icon: data.servants[i].icon,
-          class: data.servants[i].class,
-          rarity: data.servants[i].rarity,
-          //key: i
-        }))
+        setServantList(prevServantList => {
+            prevServantList[number] = {
+            id: data.servants[i].id,
+            name: data.servants[i].name,
+            icon: data.servants[i].icon,
+            class: data.servants[i].class,
+            rarity: data.servants[i].rarity,
+            key: i
+          }
+          return [...prevServantList]
+        })
       })
   };
 
   const servantsDisplay = servantList.map(e => (
     <Servant
-      key={e.key}
-      handleClick={() => handleClickSingle}
+      key={servantList.indexOf(e)}
+      number={servantList.indexOf(e)}
+      handleClick={handleClickSingle}
       servantInfo = {e}
     />
   ))
