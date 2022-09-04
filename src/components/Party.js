@@ -10,7 +10,6 @@ const Party = () => {
     icon: "Arthuria.webp",
     class: "Class",
     rarity: "⋆?",
-    key: 0
   }
 
   const [ servantList, setServantList ] = useState([
@@ -22,7 +21,7 @@ const Party = () => {
     const arrID = [];
     while(arrID.length < 5){
       var i = Math.floor(Math.random() * 8); 
-      if(arrID.indexOf(i) === -1){
+      if(arrID.indexOf(i) === -1){ // take this outside
         arrID.push(i)
       }
     }
@@ -35,15 +34,13 @@ const Party = () => {
             name: data.servants[e].name,
             icon: data.servants[e].icon,
             class: data.servants[e].class,
-            rarity: data.servants[e].rarity,
-            key: i
+            rarity: data.servants[e].rarity
           }])
         })
       }) 
   };
 
   const handleClickSingle = (number) => { // if called before multi, bugged, idk why
-    console.log("Single click")
     fetch('servants.json')
       .then(response => response.json())
       .then(data => {
@@ -54,22 +51,21 @@ const Party = () => {
             name: data.servants[i].name,
             icon: data.servants[i].icon,
             class: data.servants[i].class,
-            rarity: data.servants[i].rarity,
-            key: i
+            rarity: data.servants[i].rarity
           }
           return [...prevServantList]
         })
       })
   };
 
-  const servantsDisplay = servantList.map(e => (
+  const servantsDisplay = servantList.map((e,i) => (
     <Servant
-      key={servantList.indexOf(e)}
-      number={servantList.indexOf(e)}
-      handleClick={handleClickSingle}
+      key = {i}
+      number = {i}
+      handleClick = {handleClickSingle}
       servantInfo = {e}
     />
-  ))
+    ))
 
   return (
   <main>
