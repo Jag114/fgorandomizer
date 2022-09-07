@@ -4,6 +4,8 @@ import Servant from './Servant';
 
 const Party = () => {
 
+  const servantListLength = 10; //10 or more, else endless loop in checkIfDuplicate()
+
   const servant = {
     id: 0,
     name: "Servant",
@@ -16,19 +18,28 @@ const Party = () => {
     servant,servant,servant,servant,servant
   ])
 
-  const handleClickMulti = () => {
-    setServantList([]);
+  const checkIfDuplicate = (howMany) => {
+    const usedArrID = servantList.map(s => {
+      return s.id
+    })
+    console.log(usedArrID)
     const arrID = [];
-    while(arrID.length < 5){
-      var i = Math.floor(Math.random() * 8); 
-      if(arrID.indexOf(i) === -1){ // take this outside
+    while(arrID.length < howMany){
+      let i = Math.floor(Math.random() * servantListLength); //fetch for servants.json length?
+      if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i+1) === -1){ // i+1 cuz of difference between servant ID and place in array
         arrID.push(i)
       }
     }
+    return arrID;
+  }
+
+  const handleClickMulti = () => {
+    setServantList([]);
+    const usedID = checkIfDuplicate(5)
       fetch('servants.json')
         .then(response => response.json())
         .then(data => {
-        arrID.forEach(e => {
+          usedID.forEach(e => {
           setServantList(prevServantList => [...prevServantList, {
             id: data.servants[e].id,
             name: data.servants[e].name,
@@ -40,24 +51,26 @@ const Party = () => {
       }) 
   };
 
-  const handleClickSingle = (number) => { // if called before multi, bugged, idk why
+  const handleClickSingle = (number) => {
+    const usedID = checkIfDuplicate(1)
     fetch('servants.json')
       .then(response => response.json())
       .then(data => {
-        let i = Math.floor(Math.random() * data.servants.length); 
-        setServantList(prevServantList => {
+        usedID.forEach(e => {
+          setServantList(prevServantList => {
             prevServantList[number] = {
-            id: data.servants[i].id,
-            name: data.servants[i].name,
-            icon: data.servants[i].icon,
-            class: data.servants[i].class,
-            rarity: data.servants[i].rarity
+            id: data.servants[e].id,
+            name: data.servants[e].name,
+            icon: data.servants[e].icon,
+            class: data.servants[e].class,
+            rarity: data.servants[e].rarity
           }
           return [...prevServantList]
         })
+        })
       })
   };
-
+  
   const servantsDisplay = servantList.map((e,i) => (
     <Servant
       key = {i}

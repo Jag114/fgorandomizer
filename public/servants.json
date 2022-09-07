@@ -62,6 +62,103 @@
             "icon":"Altera.webp",
             "class":"Saber", 
             "rarity":"⋆⋆⋆⋆⋆"
+        },
+
+        {
+            "id":9,
+            "name":"Gilles de Rais",
+            "icon":"GillesSaber.webp",
+            "class":"Saber", 
+            "rarity":"⋆⋆⋆"
+        },
+
+        {
+            "id":10,
+            "name":"Chevalier d'Eon",
+            "icon":"dEon.webp",
+            "class":"Saber", 
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":11,
+            "name":"EMIYA",
+            "icon":"Emiya.webp",
+            "class":"Archer", 
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":12,
+            "name":"Gilgamesh",
+            "icon":"Gilgamesh.webp",
+            "class":"Archer", 
+            "rarity":"⋆⋆⋆⋆⋆"
+        },
+
+        {
+            "id":13,
+            "name":"Robin Hood",
+            "icon":"Robin.webp",
+            "class":"Archer", 
+            "rarity":"⋆⋆⋆"
+        },
+
+        {
+            "id":14,
+            "name":"Atalanta",
+            "icon":"Atalanta.webp",
+            "class":"Archer", 
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":15,
+            "name":"Euryale",
+            "icon":"Euryale.webp",
+            "class":"Archer", 
+            "rarity":"⋆⋆⋆"
+        },
+
+        {
+            "id":16,
+            "name":"Arash",
+            "icon":"Arash.webp",
+            "class":"Archer", 
+            "rarity":"⋆"
+        },
+
+        {
+            "id":17,
+            "name":"Cú Chulainn",
+            "icon":"CuChulainn.webp",
+            "class":"Lancer", 
+            "rarity":"⋆⋆⋆"
+        },
+
+        {
+            "id":18,
+            "name":"Elizabeth Báthory",
+            "icon":"EliL.webp",
+            "class":"Lancer", 
+            "rarity":"⋆⋆⋆⋆"
+        },
+
+        {
+            "id":19,
+            "name":"Musashibō Benkei",
+            "icon":"Benkei.webp",
+            "class":"Lancer", 
+            "rarity":"⋆⋆"
+        },
+
+        {
+            "id":20,
+            "name":"Cú Chulainn (Prototype)",
+            "icon":"CuChulainnProto.webp",
+            "class":"Lancer", 
+            "rarity":"⋆⋆⋆"
         }
+
     ]
 }
