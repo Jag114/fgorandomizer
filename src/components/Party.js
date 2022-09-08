@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import './Party.css';
 import Servant from './Servant';
+/*
+  TODO:
+    1. settings
+      I. choose rarity
+      II. choose class
+      III*. choose cost
+    2. appearance
+      I. mobile viewport
+      II, custom rarity for mash " 3 <br> 4 <br> 5? "
+    3. code readability and customizability
+      I. put fetch/es into other file/s
+    4. funcionality
+      I*. ce randomizer
 
+    * - may not be in final version
+*/
 const Party = () => {
 
   const servantListLength = 10; //10 or more, else endless loop in checkIfDuplicate()
@@ -22,7 +37,6 @@ const Party = () => {
     const usedArrID = servantList.map(s => {
       return s.id
     })
-    console.log(usedArrID)
     const arrID = [];
     while(arrID.length < howMany){
       let i = Math.floor(Math.random() * servantListLength); //fetch for servants.json length?
