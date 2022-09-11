@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Party.css';
 import Servant from './Servant';
 import servantFetch from '../data/servantFetch';
+import settingsLogo from '../icons/settings.png'
 
 /*
   TODO:
@@ -12,10 +13,14 @@ import servantFetch from '../data/servantFetch';
     2. appearance
       I. mobile viewport
       II, custom rarity for mash " 3 <br> 4 <br> 5? "
-    3. code readability and customizability
-      I. put fetch/es into other file/s
-    4. funcionality
+    3. funcionality
       I*. ce randomizer
+    4. bugs 
+      I. endless loop in checkIfDuplicate
+        - happens when there are less than 10 servants and user tries to randomize full
+        party twice
+        - if there are less than 5 servants to choose from put default servant object
+        - do tests
 
     * - may not be in final version
 */
@@ -26,12 +31,17 @@ const Party = () => {
     name: "Servant",
     icon: "Arthuria.webp",
     class: "Class",
-    rarity: "⋆?",
+    rarity: "5",
   }
 
   const [ servantList, setServantList ] = useState([
     servant,servant,servant,servant,servant
   ])
+
+  const [ globalSettings, setGlobalSettings ] = useState({
+    rarity: [0,5], //from - to
+    class: []
+  }) 
 
   const checkIfDuplicate = (howMany, length) => {
     const usedArrID = servantList.map(s => {
@@ -40,9 +50,16 @@ const Party = () => {
 
     const arrID = [];
     while(arrID.length < howMany){
-      let i = Math.floor(Math.random() * length);
-      if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i+1) === -1){ // i+1 cuz of difference between servant ID and place in array
-        arrID.push(i)
+      let i = Math.floor(Math.random() * length);  //default "* length"
+      if(howMany === 1){
+        if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i) === -1){
+          arrID.push(i)
+        }
+      }
+      else{
+        if(arrID.indexOf(i) === -1){ 
+          arrID.push(i)
+        }
       }
     }
     return arrID;
@@ -50,7 +67,7 @@ const Party = () => {
 
   const handleClickMulti = () => {
     setServantList([]);
-    servantFetch().then(data => {
+    servantFetch(globalSettings).then(data => {
       const usedID = checkIfDuplicate(5, data.length)
       usedID.forEach(e => {
       setServantList(prevServantList => [...prevServantList, {
@@ -81,6 +98,13 @@ const Party = () => {
       })
     })
   };
+
+  const handleSettings = () =>{
+    setGlobalSettings({
+      rarity: [0,4],
+      class: []
+    })
+  }
   
   const servantsDisplay = servantList.map((e,i) => (
     <Servant
@@ -95,6 +119,7 @@ const Party = () => {
   <main>
     <div className='party'>
       {servantsDisplay}
+      <img src={settingsLogo} alt='globalSettingsButton' onClick={handleSettings} className='settings'/>
     </div>
     <div className='buttonHolder'>
       <button onClick={handleClickMulti} className='button'> Randomize </button>

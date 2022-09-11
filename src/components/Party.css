@@ -17,4 +17,9 @@ body{
 
 .party{
     height: 230px; 
+    display: flex;
 } 
+
+.settings{
+    scale: .1;
+}
