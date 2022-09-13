@@ -38,10 +38,10 @@ const Party = () => {
     servant,servant,servant,servant,servant
   ])
 
-  const [ globalSettings, setGlobalSettings ] = useState({
-    rarity: [0,5], //from - to
-    class: []
-  }) 
+  let globalSettings = {
+    rarity2: [],
+    class2: []
+  }
 
   const checkIfDuplicate = (howMany, length) => {
     const usedArrID = servantList.map(s => {
@@ -82,7 +82,7 @@ const Party = () => {
   };
 
   const handleClickSingle = (number) => {
-    servantFetch().then(data => {
+    servantFetch(globalSettings).then(data => {
       const usedID = checkIfDuplicate(1, data.length)
       usedID.forEach(e => {
         setServantList(prevServantList => {
@@ -98,13 +98,6 @@ const Party = () => {
       })
     })
   };
-
-  const handleSettings = () =>{
-    setGlobalSettings({
-      rarity: [0,4],
-      class: []
-    })
-  }
   
   const servantsDisplay = servantList.map((e,i) => (
     <Servant
@@ -119,7 +112,7 @@ const Party = () => {
   <main>
     <div className='party'>
       {servantsDisplay}
-      <img src={settingsLogo} alt='globalSettingsButton' onClick={handleSettings} className='settings'/>
+      <img src={settingsLogo} alt='globalSettingsButton' onClick={console.log("settings click")} className='settings-icon'/>
     </div>
     <div className='buttonHolder'>
       <button onClick={handleClickMulti} className='button'> Randomize </button>
