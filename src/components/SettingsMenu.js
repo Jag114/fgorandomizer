@@ -1,14 +1,21 @@
 import "./SettingsMenu.css";
 import React, { useState } from "react";
+import settingsLogo from '../icons/settings.png'
 
 const SettingsMenu = () => {
   const [ settings, setSettings ] = useState({
     rarity: [],
     class: []
-  })    
+  })  
+
+  const [ isSeen, setIsSeen ] = useState(false)
 
   const saveSettings = () => {
     setSettings(prevSettings => {})
+  }
+
+  const handleClick = () => {
+    setIsSeen(prevIsSeen => !prevIsSeen)
   }
 
   return (
@@ -81,6 +88,7 @@ const SettingsMenu = () => {
         </div>
       </div>
       <button className="settings-button"> Save settings </button>
+      <img src={settingsLogo} alt='globalSettingsButton' onClick={handleClick} className='settings-icon'/>
     </div>
   );
 };

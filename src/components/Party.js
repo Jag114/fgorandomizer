@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Party.css';
 import Servant from './Servant';
 import servantFetch from '../data/servantFetch';
-import settingsLogo from '../icons/settings.png'
 
 /*
   TODO:
@@ -112,7 +111,6 @@ const Party = () => {
   <main>
     <div className='party'>
       {servantsDisplay}
-      <img src={settingsLogo} alt='globalSettingsButton' onClick={console.log("settings click")} className='settings-icon'/>
     </div>
     <div className='buttonHolder'>
       <button onClick={handleClickMulti} className='button'> Randomize </button>
