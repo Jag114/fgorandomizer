@@ -1,6 +1,6 @@
 async function fetchServant() {
     const settings = {
-        rarity: [1,2,3,4],
+        rarity: [],
         class: ["Saber", "Archer"]
     }
     //const servantClass = settings.class
@@ -17,6 +17,8 @@ async function fetchServant() {
                 }
             })
         })
+    }else{
+        newModifiedData = [...data.servants]
     }
     console.log(newModifiedData);
     if(settings.class.length > 0){
