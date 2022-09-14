@@ -1,11 +1,9 @@
 async function fetchServant() {
     const settings = {
-        rarity: [],
+        rarity: [1,2,3,4],
         class: ["Saber", "Archer"]
     }
-    //const servantClass = settings.class
-    //const servantRarity = settings.rarity
-    let newModifiedData = [];
+    let modifiedData = [];
     let isTrue;
     const response = await fetch('servants.json')
     const data = await response.json()
@@ -13,30 +11,24 @@ async function fetchServant() {
         data.servants.forEach(e => {
             settings.rarity.forEach(raritySetting => {
                 if(e.rarity === raritySetting){
-                    newModifiedData.push(e)
+                    modifiedData.push(e)
                 }
             })
         })
     }else{
-        newModifiedData = [...data.servants]
+        modifiedData = [...data.servants]
     }
-    console.log(newModifiedData);
     if(settings.class.length > 0){
-       newModifiedData = newModifiedData.filter(e => {
+        modifiedData = modifiedData.filter(e => {
             isTrue = false;
             settings.class.forEach(classSetting => {
-                console.log(e.class, classSetting);
                 if(e.class === classSetting){
                     isTrue = true
                 }
             })
-            console.log("isTrue: ", isTrue);
             return isTrue ? true : false
        })
     }
-    console.log("Test data: ", newModifiedData);
-    let modifiedData = data.servants.filter(e => e)
-    console.log("Filtered servants: ",modifiedData)
     return { data: modifiedData, length: modifiedData.length };
 }
 
