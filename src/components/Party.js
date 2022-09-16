@@ -23,7 +23,7 @@ import servantFetch from '../data/servantFetch';
 
     * - may not be in final version
 */
-const Party = () => {
+const Party = ({formData}) => {
 
   const servant = {
     id: 0,
@@ -66,7 +66,7 @@ const Party = () => {
 
   const handleClickMulti = () => {
     setServantList([]);
-    servantFetch(globalSettings).then(data => {
+    servantFetch(formData).then(data => {
       const usedID = checkIfDuplicate(5, data.length)
       usedID.forEach(e => {
       setServantList(prevServantList => [...prevServantList, {
@@ -81,7 +81,7 @@ const Party = () => {
   };
 
   const handleClickSingle = (number) => {
-    servantFetch(globalSettings).then(data => {
+    servantFetch(formData).then(data => {
       const usedID = checkIfDuplicate(1, data.length)
       usedID.forEach(e => {
         setServantList(prevServantList => {

@@ -1,8 +1,9 @@
-async function fetchServant() {
-    const settings = {
-        rarity: [1,2,3,4],
-        class: ["Saber", "Archer"]
-    }
+async function fetchServant(settings) {
+    // const settings = {
+    //     rarity: [1,2,3,4],
+    //     class: ["Saber", "Archer"]
+    // }
+    console.log("Settings: ",settings);
     let modifiedData = [];
     let isTrue;
     const response = await fetch('servants.json')
