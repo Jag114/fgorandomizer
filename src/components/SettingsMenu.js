@@ -43,7 +43,7 @@ const SettingsMenu = ({formData, setFormData}) => {
     setFormData(() => {
       return {
         rarity: [...rarityArr],
-        class: [...classArr]
+        className: [...classArr]
       }
     })
     console.log("B",rarityArr, classArr);
@@ -75,52 +75,52 @@ const SettingsMenu = ({formData, setFormData}) => {
           <br />
           <div className="settings-class">
             <div className="knight-classes">
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Saber"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="saber"/>
               <label>Saber</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Archer"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="archer"/>
               <label>Archer</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Lancer"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="lancer"/>
               <label>Lancer</label>
               <br />
             </div>
             <div className="cavalry-classes">
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Rider"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="rider"/>
               <label>Rider</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Caster"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="caster"/>
               <label>Caster</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Assassin"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="assassin"/>
               <label>Assassin</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Berserker"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="berserker"/>
               <label>Berserker</label>
               <br />
             </div>
             <div className="new-classes">
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Foreigner"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="foreigner"/>
               <label>Foreigner</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Alter Ego"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="alterEgo"/>
               <label>Alter Ego</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Pretender"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="pretender"/>
               <label>Pretender</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Shielder"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="shielder"/>
               <label>Shielder</label>
               <br />
             </div>
             <div className="extra-classes">
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Ruler"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="ruler"/>
               <label>Ruler</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Avenger"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="avenger"/>
               <label>Avenger</label>
               <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="Moon Cancer"/>
+              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="moonCancer"/>
               <label>Moon Cancer</label>
               <br />
             </div>

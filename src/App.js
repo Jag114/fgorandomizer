@@ -6,7 +6,7 @@ const App = () => {
 
   const [ formData, setFormData ] = useState({
     rarity: [],
-    class: [],
+    className: [],
   });
 
   return (

@@ -29,18 +29,13 @@ const Party = ({formData}) => {
     id: 0,
     name: "Servant",
     icon: "Arthuria.webp",
-    class: "Class",
+    className: "Class",
     rarity: "5",
   }
 
   const [ servantList, setServantList ] = useState([
     servant,servant,servant,servant,servant
   ])
-
-  let globalSettings = {
-    rarity2: [],
-    class2: []
-  }
 
   const checkIfDuplicate = (howMany, length) => {
     const usedArrID = servantList.map(s => {
@@ -70,10 +65,10 @@ const Party = ({formData}) => {
       const usedID = checkIfDuplicate(5, data.length)
       usedID.forEach(e => {
       setServantList(prevServantList => [...prevServantList, {
-        id: data.data[e].id,
+        id: data.data[e].collectionNo,
         name: data.data[e].name,
         icon: data.data[e].icon,
-        class: data.data[e].class,
+        className: data.data[e].className,
         rarity: data.data[e].rarity
       }])
     })
@@ -86,10 +81,10 @@ const Party = ({formData}) => {
       usedID.forEach(e => {
         setServantList(prevServantList => {
           prevServantList[number] = {
-            id: data.data[e].id,
+            id: data.data[e].collectionNo,
             name: data.data[e].name,
             icon: data.data[e].icon,
-            class: data.data[e].class,
+            className: data.data[e].className,
             rarity: data.data[e].rarity
         }
         return [...prevServantList]

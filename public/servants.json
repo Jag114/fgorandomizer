@@ -5,7 +5,7 @@
             "id":1,
             "name":"Mash",
             "icon":"Mash.webp",
-            "class":"Shielder",
+            "className":"Shielder",
             "rarity":3
         },
     
@@ -13,14 +13,14 @@
             "id":2,
             "name":"Arthuria",
             "icon":"Arthuria.webp",
-            "class":"Saber",
+            "className":"Saber",
             "rarity":5
         },
         {
             "id":3,
             "name":"Arthuria (Alter)",
             "icon":"ArthuriaAlter.webp",
-            "class":"Saber",
+            "className":"Saber",
             "rarity":4
         },
 
@@ -28,7 +28,7 @@
             "id":4,
             "name":"Arthuria (Lily)",
             "icon":"ArthuriaLily.webp",
-            "class":"Saber",
+            "className":"Saber",
             "rarity":4
         },
 
@@ -36,7 +36,7 @@
             "id":5,
             "name":"Nero",
             "icon":"Nero.webp",
-            "class":"Saber", 
+            "className":"Saber", 
             "rarity":4
         },
 
@@ -44,7 +44,7 @@
             "id":6,
             "name":"Siegfried",
             "icon":"Siegfried.webp",
-            "class":"Saber", 
+            "className":"Saber", 
             "rarity":4
         },
 
@@ -52,7 +52,7 @@
             "id":7,
             "name":"Caesar",
             "icon":"Caesar.webp",
-            "class":"Saber", 
+            "className":"Saber", 
             "rarity":3
         },
 
@@ -60,7 +60,7 @@
             "id":8,
             "name":"Altera",
             "icon":"Altera.webp",
-            "class":"Saber", 
+            "className":"Saber", 
             "rarity":5
         },
 
@@ -68,7 +68,7 @@
             "id":9,
             "name":"Gilles de Rais",
             "icon":"GillesSaber.webp",
-            "class":"Saber", 
+            "className":"Saber", 
             "rarity":3
         },
 
@@ -76,7 +76,7 @@
             "id":10,
             "name":"Chevalier d'Eon",
             "icon":"dEon.webp",
-            "class":"Saber", 
+            "className":"Saber", 
             "rarity":4
         },
 
@@ -84,7 +84,7 @@
             "id":11,
             "name":"EMIYA",
             "icon":"Emiya.webp",
-            "class":"Archer", 
+            "className":"Archer", 
             "rarity":4
         },
 
@@ -92,7 +92,7 @@
             "id":12,
             "name":"Gilgamesh",
             "icon":"Gilgamesh.webp",
-            "class":"Archer", 
+            "className":"Archer", 
             "rarity":5
         },
 
@@ -100,7 +100,7 @@
             "id":13,
             "name":"Robin Hood",
             "icon":"Robin.webp",
-            "class":"Archer", 
+            "className":"Archer", 
             "rarity":3
         },
 
@@ -108,7 +108,7 @@
             "id":14,
             "name":"Atalanta",
             "icon":"Atalanta.webp",
-            "class":"Archer", 
+            "className":"Archer", 
             "rarity":4
         },
 
@@ -116,7 +116,7 @@
             "id":15,
             "name":"Euryale",
             "icon":"Euryale.webp",
-            "class":"Archer", 
+            "className":"Archer", 
             "rarity":3
         },
 
@@ -124,7 +124,7 @@
             "id":16,
             "name":"Arash",
             "icon":"Arash.webp",
-            "class":"Archer", 
+            "className":"Archer", 
             "rarity":1
         },
 
@@ -132,7 +132,7 @@
             "id":17,
             "name":"Cú Chulainn",
             "icon":"CuChulainn.webp",
-            "class":"Lancer", 
+            "className":"Lancer", 
             "rarity":3
         },
 
@@ -140,7 +140,7 @@
             "id":18,
             "name":"Elizabeth Báthory",
             "icon":"EliL.webp",
-            "class":"Lancer", 
+            "className":"Lancer", 
             "rarity":4
         },
 
@@ -148,7 +148,7 @@
             "id":19,
             "name":"Musashibō Benkei",
             "icon":"Benkei.webp",
-            "class":"Lancer", 
+            "className":"Lancer", 
             "rarity":2
         },
 
@@ -156,7 +156,7 @@
             "id":20,
             "name":"Cú Chulainn (Prototype)",
             "icon":"CuChulainnProto.webp",
-            "class":"Lancer", 
+            "className":"Lancer", 
             "rarity":3
         }
 

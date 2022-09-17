@@ -1,15 +1,13 @@
 async function fetchServant(settings) {
-    // const settings = {
-    //     rarity: [1,2,3,4],
-    //     class: ["Saber", "Archer"]
-    // }
     console.log("Settings: ",settings);
     let modifiedData = [];
     let isTrue;
-    const response = await fetch('servants.json')
+    //const response = await fetch('servants.json')  // .servants
+    const response = await fetch('https://api.atlasacademy.io/export/NA/basic_servant.json')
     const data = await response.json()
+    console.log(data);
     if(settings.rarity.length > 0){
-        data.servants.forEach(e => {
+        data.forEach(e => {
             settings.rarity.forEach(raritySetting => {
                 if(e.rarity === raritySetting){
                     modifiedData.push(e)
@@ -17,19 +15,20 @@ async function fetchServant(settings) {
             })
         })
     }else{
-        modifiedData = [...data.servants]
+        modifiedData = [...data]
     }
-    if(settings.class.length > 0){
+    if(settings.className.length > 0){
         modifiedData = modifiedData.filter(e => {
             isTrue = false;
-            settings.class.forEach(classSetting => {
-                if(e.class === classSetting){
+            settings.className.forEach(classSetting => {
+                if(e.className === classSetting){
                     isTrue = true
                 }
             })
             return isTrue ? true : false
        })
     }
+    console.log(modifiedData);
     return { data: modifiedData, length: modifiedData.length };
 }
 
