@@ -18,7 +18,7 @@ const Party = ({formData}) => {
   const servant = {
     id: 0,
     name: "Servant",
-    icon: "Arthuria.webp",
+    icon: "100100",  //arthuria
     className: "Class",
     rarity: "5",
   }
@@ -61,9 +61,9 @@ const Party = ({formData}) => {
       setServantList(prevServantList => [...prevServantList, {
         id: data.data[e].collectionNo,
         name: data.data[e].name,
-        icon: data.data[e].icon,
+        icon: data.data[e].id,
         className: data.data[e].className,
-        rarity: data.data[e].rarity
+        rarity: data.data[e].rarity,
       }])
     })
   }); 
@@ -77,9 +77,9 @@ const Party = ({formData}) => {
           prevServantList[number] = {
             id: data.data[e].collectionNo,
             name: data.data[e].name,
-            icon: data.data[e].icon,
+            icon: data.data[e].id,
             className: data.data[e].className,
-            rarity: data.data[e].rarity
+            rarity: data.data[e].rarity,
         }
         return [...prevServantList]
       })
