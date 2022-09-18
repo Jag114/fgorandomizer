@@ -35,7 +35,7 @@ const SettingsMenu = ({formData, setFormData}) => {
       default:
         break;
     }
-    console.log("A",rarityArr, classArr);
+    console.log("Handle change",rarityArr, classArr);
   }
 
   const handleSubmit = (e) => {
@@ -46,7 +46,7 @@ const SettingsMenu = ({formData, setFormData}) => {
         className: [...classArr]
       }
     })
-    console.log("B",rarityArr, classArr);
+    console.log("Handle submit",rarityArr, classArr);
     console.log(formData);
   }
 

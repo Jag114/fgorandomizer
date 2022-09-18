@@ -22,7 +22,7 @@ const Servant = (props) => {
   return (
     <div className='servantContainer'>
       <div className='servantClass'>  {capitalizedClassName(props.servantInfo.className)} </div>
-      <img src={`./icons/${props.servantInfo.icon}`} alt='arthuria' width='100' height='100' className='servantIcon'></img>
+      <img src={`./icons/${props.servantInfo.icon}`} alt='Servant Icon' width='100' height='100' className='servantIcon'></img>
       <div className='servantName'> {props.servantInfo.name} </div>
       <div className='servantRarity'>  {rarity(props.servantInfo.rarity)}</div>
       <button onClick={() => props.handleClick(props.number)} className='randomizeB'> Randomize </button>
