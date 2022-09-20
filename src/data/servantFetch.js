@@ -1,11 +1,16 @@
+/* creates empty array for filtered data, 
+* fetches array of objects and filters them based on settings (object) argument,
+* filtered objects are put into modifiedData array which is later returned
+*/
+
 async function fetchServant(settings) {
-    console.log("Settings: ",settings);
+    //console.log("Settings: ",settings);
     let modifiedData = [];
     let isTrue;
     //const response = await fetch('servants.json')  // .servants
     const response = await fetch('https://api.atlasacademy.io/export/NA/basic_servant.json')
     const data = await response.json()
-    console.log(data);
+    //console.log(data);
     if(settings.rarity.length > 0){
         data.forEach(e => {
             settings.rarity.forEach(raritySetting => {
@@ -28,7 +33,7 @@ async function fetchServant(settings) {
             return isTrue ? true : false
        })
     }
-    console.log(modifiedData);
+    //console.log(modifiedData);
     return { data: modifiedData, length: modifiedData.length };
 }
 

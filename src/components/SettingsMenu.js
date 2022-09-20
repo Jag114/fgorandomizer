@@ -9,6 +9,7 @@ const SettingsMenu = ({formData, setFormData}) => {
  
   const [ isVisible, setIsVisible ] = useState(false)
 
+  //adds/removes class/rairty limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
     switch (name) {
@@ -35,9 +36,10 @@ const SettingsMenu = ({formData, setFormData}) => {
       default:
         break;
     }
-    console.log("Handle change",rarityArr, classArr);
+    //console.log("Handle change",rarityArr, classArr);
   }
-
+  
+  //puts class/rarity limiations from aforementioned arrays to state taken from app component
   const handleSubmit = (e) => {
     e.preventDefault()
     setFormData(() => {
@@ -46,8 +48,8 @@ const SettingsMenu = ({formData, setFormData}) => {
         className: [...classArr]
       }
     })
-    console.log("Handle submit",rarityArr, classArr);
-    console.log(formData);
+    //console.log("Handle submit",rarityArr, classArr);
+    //console.log(formData);
   }
 
   const setVisibility = () => {
