@@ -12,22 +12,17 @@
 
 import cacheImage from "./cacheImage";
 
-let fetchedCache = {
-  jsonData: [],
-  imgUrl: []
-};
-
-async function fetchServant(settings) {
+async function fetchServant(settings = {rarity: [], className: []}) {
   let data = [];
   let modifiedData = [];
   let isTrue;
   let unplayableID = [83, 149, 151, 152, 168, 240, 333];
-  if(fetchedCache.jsonData.length > 0){
+  if(JSON.parse(localStorage.getItem("servantsData")).length > 0){
     console.log("Memory");
-    data = [...fetchedCache.jsonData];
+    data = JSON.parse(localStorage.getItem("servantsData"));
   }
   else{
-    const response = await fetch("https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json"); // JP server
+    const response = await fetch("https://api.atlasacademy.io/export/JP/basic_servant_lang_en.json"); // JP server
     data = await response.json();
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < unplayableID.length; j++) {
@@ -36,7 +31,7 @@ async function fetchServant(settings) {
         }
       }
     }
-    fetchedCache.jsonData = [...data]
+    localStorage.setItem("servantsData", JSON.stringify(data))
     console.log("Fetched");
   }
 

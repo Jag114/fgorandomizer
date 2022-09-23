@@ -7,7 +7,7 @@ import servantFetch from '../data/servantFetch';
   TODO:
     1. settings
       I*. choose cost
-      II. fetch called 1 time
+      II. change server data
     2. appearance
       I. mobile viewport
       II. border colour depends on rarity
@@ -15,7 +15,8 @@ import servantFetch from '../data/servantFetch';
     3. funcionality
       I*. ce randomizer
       II. include/exclude servants
-      III. user profile (legit or local storage) that saves included/excluded servants
+      III. user profile (legit or local storage) that saves included/excluded servants (router)
+      IV. re-fetch if users data is incomplete/corrupted/or sth else
     4. fixes
       I. checkIfDuplicate may break if there is 1 servant chosen and user click single
          click randomizer twice
@@ -112,7 +113,7 @@ const Party = ({formData}) => {
       handleClick = {handleClickSingle}
       servantInfo = {e}
     />
-    ))
+  ))
 
   return (
   <main>

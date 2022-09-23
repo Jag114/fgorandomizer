@@ -1,15 +1,11 @@
 import "./SettingsMenu.css";
-import React, { useState } from "react";
-import settingsLogo from "../icons/settings.png";
+import React from "react";
 
 let rarityArr = []
 let classArr = []
 
-const SettingsMenu = ({formData, setFormData}) => {
- 
-  const [ isVisible, setIsVisible ] = useState(false)
-
-  //adds/removes class/rairty limitations from settings form to 2 separate arrays
+const SettingsMenu = ({setFormData}) => {
+  //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
     switch (name) {
@@ -52,11 +48,9 @@ const SettingsMenu = ({formData, setFormData}) => {
     //console.log(formData);
   }
 
-  const setVisibility = () => {
-    setIsVisible(prevIsVisible => !prevIsVisible)
-  }
+  
 
-  if(isVisible){
+  
     return (
       <div className="settings-menu">
         <form onSubmit={handleSubmit}>
@@ -129,25 +123,8 @@ const SettingsMenu = ({formData, setFormData}) => {
           </div>
           <button className="settings-button"> Save settings </button>
         </form>
-        <img
-          src={settingsLogo}
-          onClick={setVisibility}
-          alt="globalSettingsButton"
-          className="settings-icon"
-        />
       </div>
     )
-  }else{
-    return (
-      <img
-        src={settingsLogo}
-        onClick={setVisibility}
-        alt="globalSettingsButton"
-        className="settings-icon"
-      />
-    )
-  }
-  
 };
 
 export default SettingsMenu;
