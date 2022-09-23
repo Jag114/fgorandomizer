@@ -6,7 +6,8 @@ import servantFetch from '../data/servantFetch';
 /*
   TODO:
     1. settings
-      III*. choose cost
+      I*. choose cost
+      II. fetch called 1 time
     2. appearance
       I. mobile viewport
       II. border colour depends on rarity
@@ -15,6 +16,9 @@ import servantFetch from '../data/servantFetch';
       I*. ce randomizer
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants
+    4. fixes
+      I. checkIfDuplicate may break if there is 1 servant chosen and user click single
+         click randomizer twice
     * - may not be in final version
 */
 const Party = ({formData}) => {
@@ -67,7 +71,7 @@ const Party = ({formData}) => {
     servantFetch(formData).then(data => {
       if(data.length < 5) {
         setServantList(prevServantList => prevServantList);
-        return alert("Too few servants")
+        return alert("Too few servants, need more than 5, " + data.length + " chosen now")
       }
       setServantList([]);
       const usedID = checkIfDuplicate(5, data.length)  

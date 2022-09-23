@@ -22,7 +22,7 @@ const Servant = (props) => {
   return (
     <div className='servantContainer'>
       <div className='servantClass'>  {capitalizedClassName(props.servantInfo.className)} </div>
-      <img src={`https://static.atlasacademy.io/NA/Faces/f_${props.servantInfo.icon}3.png`} alt='Servant Icon' width='100' height='100' className='servantIcon'></img>
+      <img src={`https://static.atlasacademy.io/JP/Faces/f_${props.servantInfo.icon}3.png`} alt='Servant Icon' width='100' height='100' className='servantIcon'></img>
       <div className='servantName'> {props.servantInfo.name} </div>
       <div className='servantRarity'>  {rarity(props.servantInfo.rarity)}</div>
       <button onClick={() => props.handleClick(props.number)} className='randomizeB'> Randomize </button>
