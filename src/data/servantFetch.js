@@ -10,18 +10,21 @@
 //const response = await fetch('servants.json')  // local (add .servants)
 //const response = await fetch('https://api.atlasacademy.io/export/NA/basic_servant.json') NA server
 
-//import cacheImage from "./cacheImage";
+import cacheImage from "./cacheImage";
 
-let fetchedCache = [];
+let fetchedCache = {
+  jsonData: [],
+  imgUrl: []
+};
 
 async function fetchServant(settings) {
   let data = [];
   let modifiedData = [];
   let isTrue;
   let unplayableID = [83, 149, 151, 152, 168, 240, 333];
-  if(fetchedCache.length > 0){
-    console.log("A");
-    data = [...fetchedCache];
+  if(fetchedCache.jsonData.length > 0){
+    console.log("Memory");
+    data = [...fetchedCache.jsonData];
   }
   else{
     const response = await fetch("https://api.atlasacademy.io/export/JP/nice_servant_lang_en.json"); // JP server
@@ -33,9 +36,8 @@ async function fetchServant(settings) {
         }
       }
     }
-    console.log(fetchedCache.length);
-    fetchedCache = [...data]
-    console.log("B");
+    fetchedCache.jsonData = [...data]
+    console.log("Fetched");
   }
 
   if (settings.rarity.length > 0) {
@@ -60,7 +62,7 @@ async function fetchServant(settings) {
       return isTrue ? true : false;
     });
   }
-  //cacheImage(data); memoize it
+  cacheImage(data); 
   return { data: modifiedData, length: modifiedData.length };
 }
 
