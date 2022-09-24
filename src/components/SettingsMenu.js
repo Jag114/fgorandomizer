@@ -1,10 +1,12 @@
 import "./SettingsMenu.css";
+import servantFetch from '../data/servantFetch';
 import React from "react";
 
 let rarityArr = []
 let classArr = []
 
-const SettingsMenu = ({setFormData}) => {
+const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
+
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
@@ -44,16 +46,32 @@ const SettingsMenu = ({setFormData}) => {
         className: [...classArr]
       }
     })
-    //console.log("Handle submit",rarityArr, classArr);
-    //console.log(formData);
   }
 
-  
+  const reFetchData = () => {
+    localStorage.setItem("servantsData", JSON.stringify([]))
+    servantFetch(region);
+  }
 
-  
+  const changeServerData = () => {
+    localStorage.setItem("servantsData", JSON.stringify([]));
+    setRegion(prevRegion => {
+      if(prevRegion === "na"){
+        return "jp";
+      }
+      return "na";
+    });
+    console.log("Region: ",region);
+    servantFetch(formData, region);
+  }
+
     return (
       <div className="settings-menu">
         <form onSubmit={handleSubmit}>
+        <label className="switch">
+          <input type="checkbox" onChange={changeServerData}/>
+          <span className="slider round"></span>
+        </label>
           <div className="settings-rarity">
             <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="rarity" value="0"/>
             <label>0</label>
@@ -121,6 +139,7 @@ const SettingsMenu = ({setFormData}) => {
               <br />
             </div>
           </div>
+          <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
           <button className="settings-button"> Save settings </button>
         </form>
       </div>

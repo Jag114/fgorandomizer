@@ -9,20 +9,17 @@ import servantFetch from '../data/servantFetch';
       I*. choose cost
       II. change server data
     2. appearance
-      I. mobile viewport
+      I. finish desktop viewport
       II. border colour depends on rarity
-      III. finish desktop viewport
+      III. finish mobile viewport
     3. funcionality
       I*. ce randomizer
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
-      IV. re-fetch if users data is incomplete/corrupted/or sth else
-    4. fixes
-      I. checkIfDuplicate may break if there is 1 servant chosen and user click single
-         click randomizer twice
+    4. bugs
     * - may not be in final version
 */
-const Party = ({formData}) => {
+const Party = ({formData, region}) => {
   //default servant template
   const servant = {
     id: 0,
@@ -43,17 +40,22 @@ const Party = ({formData}) => {
   * returns array of unique servant id's 
   */
   const checkIfDuplicate = (howMany, length) => {
+
+    const arrID = [];
     const usedArrID = servantList.map(s => {
       return s.id
     })
 
-    const arrID = [];
     while(arrID.length < howMany){
       let i = Math.floor(Math.random() * length);  //servant list length
       if(howMany === 1){
-        if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i+1) === -1){ // i+1 cuz of diference between index and id
-          arrID.push(i)
-        }
+        if(length > 2){
+          if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i+1) === -1){ // i+1 cuz of diference between index and id
+            arrID.push(i)
+          }
+        }else{
+          arrID.push(i);
+        } 
       }
       else{
         if(arrID.indexOf(i) === -1){ 
@@ -69,7 +71,7 @@ const Party = ({formData}) => {
   * in case of singleClick it changes one servant in party hence "number" argument
   */
   const handleClickMulti = () => {
-    servantFetch(formData).then(data => {
+    servantFetch(formData, region).then(data => {
       if(data.length < 5) {
         setServantList(prevServantList => prevServantList);
         return alert("Too few servants, need more than 5, " + data.length + " chosen now")
@@ -89,7 +91,7 @@ const Party = ({formData}) => {
   };
 
   const handleClickSingle = (number) => {
-    servantFetch(formData).then(data => {
+    servantFetch(formData, region).then(data => {
       const usedID = checkIfDuplicate(1, data.length)
       usedID.forEach(e => {
         setServantList(prevServantList => {
@@ -108,7 +110,7 @@ const Party = ({formData}) => {
   
   const servantsDisplay = servantList.map((e,i) => (
     <Servant
-      key = {i}
+      key = {e.collectionNo} //throws error for firts render with template servant
       number = {i}
       handleClick = {handleClickSingle}
       servantInfo = {e}

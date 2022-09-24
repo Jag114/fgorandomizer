@@ -9,10 +9,12 @@ const App = () => {
     className: [],
   });
 
+  const [ region, setRegion ] = useState("na")
+
   return (
     <>  
-      <Party formData={formData}/>
-      <SettingsMenu formData={formData} setFormData={setFormData}/>
+      <Party formData={formData} region={region}/>
+      <SettingsMenu formData={formData} setFormData={setFormData} region={region} setRegion={setRegion}/>
     </>
   );
 }
