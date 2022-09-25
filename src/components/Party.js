@@ -10,13 +10,13 @@ import servantFetch from '../data/servantFetch';
       II. change server data
     2. appearance
       I. finish desktop viewport
-      II. border colour depends on rarity
-      III. finish mobile viewport
+      II. finish mobile viewport
     3. funcionality
       I*. ce randomizer
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
+      I. change region - re-rendering issue? re-fetching after region change fixes it
     * - may not be in final version
 */
 const Party = ({formData, region}) => {
@@ -26,7 +26,7 @@ const Party = ({formData, region}) => {
     name: "Servant",
     icon: "100100",  //arthuria
     className: "Class",
-    rarity: "5",
+    rarity: 5,
   }
 
   const [ servantList, setServantList ] = useState([
@@ -110,7 +110,7 @@ const Party = ({formData, region}) => {
   
   const servantsDisplay = servantList.map((e,i) => (
     <Servant
-      key = {e.collectionNo} //throws error for firts render with template servant
+      key = {i} //throws error for firts render with template servant
       number = {i}
       handleClick = {handleClickSingle}
       servantInfo = {e}

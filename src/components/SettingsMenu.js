@@ -50,19 +50,22 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
 
   const reFetchData = () => {
     localStorage.setItem("servantsData", JSON.stringify([]))
-    servantFetch(region);
+    servantFetch({rarity: [], className: []}, region);
   }
 
-  const changeServerData = () => {
+  const changeServerData = (event) => {
+    const { checked } = event.target
+    console.log(checked);
     localStorage.setItem("servantsData", JSON.stringify([]));
-    setRegion(prevRegion => {
-      if(prevRegion === "na"){
+    setRegion(() => {
+      if(checked){
+        console.log("Change na => jp");
         return "jp";
       }
+      console.log("Change jp => na");
       return "na";
     });
-    console.log("Region: ",region);
-    servantFetch(formData, region);
+    console.log("Region after: ",region);
   }
 
     return (
