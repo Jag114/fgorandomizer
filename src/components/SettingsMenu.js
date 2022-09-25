@@ -55,17 +55,13 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
 
   const changeServerData = (event) => {
     const { checked } = event.target
-    console.log(checked);
     localStorage.setItem("servantsData", JSON.stringify([]));
     setRegion(() => {
       if(checked){
-        console.log("Change na => jp");
         return "jp";
       }
-      console.log("Change jp => na");
       return "na";
     });
-    console.log("Region after: ",region);
   }
 
     return (

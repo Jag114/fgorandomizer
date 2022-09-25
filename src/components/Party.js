@@ -8,15 +8,24 @@ import servantFetch from '../data/servantFetch';
     1. settings
       I*. choose cost
       II. change server data
+      III. filter on change not on click of the "Save setting" button
     2. appearance
       I. finish desktop viewport
+        A. header, footer
+        B. background
+        C. stylize buttons
+        D. fancy font*
       II. finish mobile viewport
+        A. resizing
+        B. class icon instead of class name, and other minimalisitc stuff*
     3. funcionality
       I*. ce randomizer
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
-      I. change region - re-rendering issue? re-fetching after region change fixes it
+      I. rewrite check if duplicate, id !== index
+      II. region checkbox changes depending on state, rn if set to jp > f5 > still has jp data
+           even though checkbox is on na
     * - may not be in final version
 */
 const Party = ({formData, region}) => {
@@ -43,14 +52,17 @@ const Party = ({formData, region}) => {
 
     const arrID = [];
     const usedArrID = servantList.map(s => {
-      return s.id
+      console.log(s.id);
+      return s.id;
     })
 
     while(arrID.length < howMany){
       let i = Math.floor(Math.random() * length);  //servant list length
       if(howMany === 1){
-        if(length > 2){
-          if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i+1) === -1){ // i+1 cuz of diference between index and id
+        if(length >= 2){
+          if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i) === -1){ // i+1 cuz of diference between index and id
+            let a = usedArrID.indexOf(i)
+            console.log(usedArrID[a]);
             arrID.push(i)
           }
         }else{
