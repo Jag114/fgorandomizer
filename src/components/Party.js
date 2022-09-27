@@ -23,9 +23,6 @@ import servantFetch from '../data/servantFetch';
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
-      I. rewrite check if duplicate, id !== index
-      II. region checkbox changes depending on state, rn if set to jp > f5 > still has jp data
-           even though checkbox is on na
     * - may not be in final version
 */
 const Party = ({formData, region}) => {
@@ -37,7 +34,7 @@ const Party = ({formData, region}) => {
     className: "Class",
     rarity: 5,
   }
-
+  
   const [ servantList, setServantList ] = useState([
     servant,servant,servant,servant,servant
   ])
@@ -51,28 +48,11 @@ const Party = ({formData, region}) => {
   const checkIfDuplicate = (howMany, length) => {
 
     const arrID = [];
-    const usedArrID = servantList.map(s => {
-      console.log(s.id);
-      return s.id;
-    })
 
     while(arrID.length < howMany){
       let i = Math.floor(Math.random() * length);  //servant list length
-      if(howMany === 1){
-        if(length >= 2){
-          if(arrID.indexOf(i) === -1 && usedArrID.indexOf(i) === -1){ // i+1 cuz of diference between index and id
-            let a = usedArrID.indexOf(i)
-            console.log(usedArrID[a]);
-            arrID.push(i)
-          }
-        }else{
-          arrID.push(i);
-        } 
-      }
-      else{
-        if(arrID.indexOf(i) === -1){ 
-          arrID.push(i)
-        }
+      if(arrID.indexOf(i) === -1){ 
+        arrID.push(i)
       }
     }
     return arrID;
@@ -104,6 +84,10 @@ const Party = ({formData, region}) => {
 
   const handleClickSingle = (number) => {
     servantFetch(formData, region).then(data => {
+      if(data.length < 1) {
+        setServantList(prevServantList => prevServantList);
+        return alert("No servants to choose from, check region and filter settings")
+      }
       const usedID = checkIfDuplicate(1, data.length)
       usedID.forEach(e => {
         setServantList(prevServantList => {

@@ -9,7 +9,7 @@ const App = () => {
     className: [],
   });
 
-  const [ region, setRegion ] = useState("na")
+  const [ region, setRegion ] = useState("na");
 
   return (
     <>  

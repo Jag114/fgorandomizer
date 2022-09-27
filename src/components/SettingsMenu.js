@@ -53,13 +53,14 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
     servantFetch({rarity: [], className: []}, region);
   }
 
-  const changeServerData = (event) => {
-    const { checked } = event.target
+  const changeServerData = () => {
     localStorage.setItem("servantsData", JSON.stringify([]));
-    setRegion(() => {
-      if(checked){
+    setRegion((prevRegion) => {
+      if(prevRegion === "na"){
+        JSON.stringify(localStorage.setItem("regionCheckbox", true));
         return "jp";
       }
+      JSON.stringify(localStorage.setItem("regionCheckbox", false));
       return "na";
     });
   }
@@ -68,7 +69,7 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
       <div className="settings-menu">
         <form onSubmit={handleSubmit}>
         <label className="switch">
-          <input type="checkbox" onChange={changeServerData}/>
+          <input type="checkbox" onChange={changeServerData} checked={JSON.parse(localStorage.getItem("regionCheckbox"))}/>
           <span className="slider round"></span>
         </label>
           <div className="settings-rarity">
