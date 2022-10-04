@@ -1,15 +1,10 @@
 import Party from './components/Party';
 import SettingsMenu from './components/SettingsMenu';
-import { useState } from 'react';
+import useSettings from './hooks/useSettings';
 
 const App = () => {
 
-  const [ formData, setFormData ] = useState({
-    rarity: [],
-    className: [],
-  });
-
-  const [ region, setRegion ] = useState("na");
+  const [formData, setFormData, region, setRegion ] = useSettings()
 
   return (
     <>  

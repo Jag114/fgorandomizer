@@ -6,20 +6,23 @@ let rarityArr = []
 let classArr = []
 
 const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
-
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
     switch (name) {
       case "rarity":
-        if(!rarityArr.includes(value)){
-          if(checked === true){
-            rarityArr.push(parseInt(value))
-          }
-        }
-        if(checked === false){
-          rarityArr.splice(rarityArr.indexOf(parseInt(value)), 1)
-        }
+        setFormData(prevFormData => {
+            if(!prevFormData.rarity.includes(value)){
+              if(checked === true){
+                rarityArr.push(value);
+              }
+            }
+            if(!checked){
+              rarityArr.splice(rarityArr.indexOf(value), 1);
+            } 
+          classArr = [...checkDuplicates(rarityArr)];
+          return {rarity: [...classArr], ...prevFormData};
+        })
         break;
       case "class":
         if(!classArr.includes(value)){
@@ -34,18 +37,26 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
       default:
         break;
     }
-    //console.log("Handle change",rarityArr, classArr);
+  }
+
+  function checkDuplicates (arr) {
+    let valuesSoFar = {};
+    let value;
+    let uniqueArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      value = arr[i];
+      if(!(value in valuesSoFar)) {
+        valuesSoFar[value] = true;
+        uniqueArr.push(value);
+      }
+    }
+    return uniqueArr;
   }
   
   //puts class/rarity limiations from aforementioned arrays to state taken from app component
   const handleSubmit = (e) => {
     e.preventDefault()
-    setFormData(() => {
-      return {
-        rarity: [...rarityArr],
-        className: [...classArr]
-      }
-    })
+    setFormData(prevFormData => prevFormData)
   }
 
   const reFetchData = () => {
@@ -57,10 +68,10 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
     localStorage.setItem("servantsData", JSON.stringify([]));
     setRegion((prevRegion) => {
       if(prevRegion === "na"){
-        JSON.stringify(localStorage.setItem("regionCheckbox", true));
+        localStorage.setItem("region", JSON.stringify(true))
         return "jp";
       }
-      JSON.stringify(localStorage.setItem("regionCheckbox", false));
+      localStorage.setItem("region", JSON.stringify(false))
       return "na";
     });
   }
@@ -69,7 +80,7 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
       <div className="settings-menu">
         <form onSubmit={handleSubmit}>
         <label className="switch">
-          <input type="checkbox" onChange={changeServerData} checked={JSON.parse(localStorage.getItem("regionCheckbox"))}/>
+          <input type="checkbox" onChange={changeServerData} checked={JSON.parse(localStorage.getItem("region"))}/>
           <span className="slider round"></span>
         </label>
           <div className="settings-rarity">

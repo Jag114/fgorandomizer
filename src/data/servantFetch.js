@@ -12,6 +12,7 @@ import cacheImage from "./cacheImage";
 const API_URL = "https://api.atlasacademy.io/export"
 
 async function fetchServant(settings, region) {
+  console.log(settings);
   let url = region === "na" ? `${API_URL}/NA/basic_servant.json` : `${API_URL}/JP/basic_servant_lang_en.json`;
   console.log("Current region: ", region, ", Current url: ", url);
   let data = [];
