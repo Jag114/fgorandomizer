@@ -14,14 +14,14 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
         setFormData(prevFormData => {
             if(!prevFormData.rarity.includes(value)){
               if(checked === true){
-                rarityArr.push(value);
+                rarityArr.push(parseInt(value));
               }
             }
             if(!checked){
               rarityArr.splice(rarityArr.indexOf(value), 1);
             } 
           classArr = [...checkDuplicates(rarityArr)];
-          return {rarity: [...classArr], ...prevFormData};
+          return {rarity: [...classArr], className: [...prevFormData.className]};
         })
         break;
       case "class":
@@ -56,7 +56,8 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
   //puts class/rarity limiations from aforementioned arrays to state taken from app component
   const handleSubmit = (e) => {
     e.preventDefault()
-    setFormData(prevFormData => prevFormData)
+    console.log(formData);
+    //setFormData(prevFormData => prevFormData)
   }
 
   const reFetchData = () => {

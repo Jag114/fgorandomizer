@@ -12,7 +12,6 @@ import cacheImage from "./cacheImage";
 const API_URL = "https://api.atlasacademy.io/export"
 
 async function fetchServant(settings, region) {
-  console.log(settings);
   let url = region === "na" ? `${API_URL}/NA/basic_servant.json` : `${API_URL}/JP/basic_servant_lang_en.json`;
   console.log("Current region: ", region, ", Current url: ", url);
   let data = [];
@@ -39,6 +38,7 @@ async function fetchServant(settings, region) {
   }
 
   if (settings.rarity.length > 0) {
+    console.log("A");
     data.forEach((e) => {
       settings.rarity.forEach((raritySetting) => {
         if (e.rarity === raritySetting) {
@@ -50,6 +50,7 @@ async function fetchServant(settings, region) {
     modifiedData = [...data];
   }
   if (settings.className.length > 0) {
+    console.log("B");
     modifiedData = modifiedData.filter((e) => {
       isTrue = false;
       settings.className.forEach((classSetting) => {

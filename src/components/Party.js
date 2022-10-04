@@ -63,7 +63,6 @@ const Party = ({formData, region}) => {
   * in case of singleClick it changes one servant in party hence "number" argument
   */
   const handleClickMulti = () => {
-    console.log("A",formData);
     servantFetch(formData, region).then(data => {
       if(data.length < 5) {
         setServantList(prevServantList => prevServantList);
