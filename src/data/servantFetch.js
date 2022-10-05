@@ -38,7 +38,6 @@ async function fetchServant(settings, region) {
   }
 
   if (settings.rarity.length > 0) {
-    console.log("A");
     data.forEach((e) => {
       settings.rarity.forEach((raritySetting) => {
         if (e.rarity === raritySetting) {
@@ -50,7 +49,6 @@ async function fetchServant(settings, region) {
     modifiedData = [...data];
   }
   if (settings.className.length > 0) {
-    console.log("B");
     modifiedData = modifiedData.filter((e) => {
       isTrue = false;
       settings.className.forEach((classSetting) => {
@@ -62,6 +60,7 @@ async function fetchServant(settings, region) {
     });
   }
   cacheImage(data); 
+  console.log(modifiedData);
   return { data: modifiedData, length: modifiedData.length };
 }
 

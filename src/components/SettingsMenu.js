@@ -2,10 +2,11 @@ import "./SettingsMenu.css";
 import servantFetch from '../data/servantFetch';
 import React from "react";
 
-let rarityArr = []
-let classArr = []
+let rarityArr = [];
+let classArr = [];
 
 const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
+  let renderCounter = 0; //for strict mode
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
@@ -18,21 +19,33 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
               }
             }
             if(!checked){
-              rarityArr.splice(rarityArr.indexOf(value), 1);
+              if(renderCounter === 0){ //for strict mode
+                rarityArr.splice(rarityArr.indexOf(value), 1);
+                renderCounter++;
+              }
             } 
-          classArr = [...checkDuplicates(rarityArr)];
-          return {rarity: [...classArr], className: [...prevFormData.className]};
+          rarityArr = [...checkDuplicates(rarityArr)];
+          console.log("Rarity arr: ",rarityArr)
+          return {rarity: [...rarityArr], className: [...prevFormData.className]};
         })
         break;
       case "class":
-        if(!classArr.includes(value)){
-          if(checked === true){
-            classArr.push(value)
+        setFormData(prevFormData => {
+          if(!prevFormData.className.includes(value)){
+            if(checked === true){
+              classArr.push(value);
+            }
           }
-        }
-        if(checked === false){
-          classArr.splice(classArr.indexOf(value), 1)
-        }
+          if(!checked){
+            if(renderCounter === 0){ //for strict mode
+              classArr.splice(classArr.indexOf(value), 1);
+              renderCounter++;
+            }
+          } 
+        classArr = [...checkDuplicates(classArr)];
+        console.log("Class arr: ",classArr);
+        return {className: [...classArr], rarity: [...prevFormData.rarity]};
+      })
         break;
       default:
         break;
@@ -52,15 +65,9 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
     }
     return uniqueArr;
   }
-  
-  //puts class/rarity limiations from aforementioned arrays to state taken from app component
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(formData);
-    //setFormData(prevFormData => prevFormData)
-  }
 
-  const reFetchData = () => {
+  const reFetchData = (e) => {
+    e.preventDefault();
     localStorage.setItem("servantsData", JSON.stringify([]))
     servantFetch({rarity: [], className: []}, region);
   }
@@ -79,7 +86,7 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
 
     return (
       <div className="settings-menu">
-        <form onSubmit={handleSubmit}>
+        <form>
         <label className="switch">
           <input type="checkbox" onChange={changeServerData} checked={JSON.parse(localStorage.getItem("region"))}/>
           <span className="slider round"></span>
@@ -152,7 +159,6 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
             </div>
           </div>
           <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
-          <button className="settings-button"> Save settings </button>
         </form>
       </div>
     )

@@ -8,7 +8,6 @@ import servantFetch from '../data/servantFetch';
     1. settings
       I*. choose cost
       II. change server data
-      III. filter on change not on click of the "Save setting" button
     2. appearance
       I. finish desktop viewport
         A. header, footer
@@ -23,6 +22,9 @@ import servantFetch from '../data/servantFetch';
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
+      I. repeating servants with single click, instead of having multi and single,
+         change it to just single that can be called 1 or 5 times, should be easier to
+         check if servants repeat tgemselves
     * - may not be in final version
 */
 const Party = ({formData, region}) => {
@@ -47,14 +49,27 @@ const Party = ({formData, region}) => {
   */
   const checkIfDuplicate = (howMany, length) => {
 
-    const arrID = [];
+    let arrID = []
+    const usedArrID = servantList.map(s => {
+      return servantList.indexOf(s);
+    })
 
     while(arrID.length < howMany){
-      let i = Math.floor(Math.random() * length);  //servant list length
-      if(arrID.indexOf(i) === -1){ 
-        arrID.push(i)
+      let i = Math.floor(Math.random() * length);
+      console.log("I ", i);
+      console.log("used id ", usedArrID);
+      if(howMany === 1){
+          if(!usedArrID.includes(i)){
+          arrID.push(i)
+        }
       }
+      else{
+        if(arrID.indexOf(i) === -1){ 
+          arrID.push(i)
+        }
     }
+   }
+    console.log("FIN ",arrID);
     return arrID;
   }
 
