@@ -60,7 +60,6 @@ async function fetchServant(settings, region) {
     });
   }
   cacheImage(data); 
-  console.log(modifiedData);
   return { data: modifiedData, length: modifiedData.length };
 }
 

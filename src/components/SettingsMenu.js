@@ -20,7 +20,7 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
             }
             if(!checked){
               if(renderCounter === 0){ //for strict mode
-                rarityArr.splice(rarityArr.indexOf(value), 1);
+                rarityArr.splice(rarityArr.indexOf(parseInt(value)), 1);
                 renderCounter++;
               }
             } 
