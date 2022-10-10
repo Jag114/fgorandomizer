@@ -50,33 +50,42 @@ const Party = ({formData, region}) => {
   const checkIfDuplicate = (data, multi) => {
     let arrID = []
     let breakNr = 0;
-    
-    const usedArrID = servantList.map(s => {
+    let i;
+    const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
     })
-    let availableID = data.data.map(e => {
+    let availableIDArr = data.data.map(e => { //ids from all servants currently available
       return e.collectionNo;
     })
-    availableID = availableID.filter(id => {
-      return usedArrID.indexOf(id) === -1;
+    let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available - ids used in party on screen
+      return usedIDArr.indexOf(id) === -1;
     })
     
     while(arrID.length < 5){
       if(breakNr > 1000) break;
-      let i = Math.floor(Math.random() * availableID.length);
-      if(!arrID.includes(i)){
+      i = Math.floor(Math.random() * availableIDArr.length); //arr index, not id nr
+      if(data.length === 1){
         arrID.push(i);
       }
-      
       if(multi === false){
-        console.log("Single - Data length", availableID.length);
-        console.log("Single - New and unique", arrID);
+        i = Math.floor(Math.random() * filteredAvailableIDArr.length)
+        console.log("Used IDs", usedIDArr);
+        console.log("All IDs: ", availableIDArr);
+        console.log("All usable IDs: ", filteredAvailableIDArr);
+        console.log("Chosen ID", filteredAvailableIDArr[i]);
+        console.log(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo));
+        if(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false){
+          arrID.push(filteredAvailableIDArr[i]);
+          //find index of object with filteredAvailableIDArr[i] as collectionNo in data.data, and push it
+        }
+        console.log(arrID);
         return arrID;
+      }
+      if(arrID.includes(i) === false){
+        arrID.push(i);
       }
       breakNr++;
     }
-    console.log("Multi - Data length", availableID.length);
-    console.log("Multi - New and unique", arrID);
     return arrID;
   }
 
@@ -88,14 +97,11 @@ const Party = ({formData, region}) => {
   const handleClick = (multi, number) => {
     servantFetch(formData, region).then(data => {
       if(multi === true && data.length < 5){
-        setServantList(prevServantList => prevServantList);
         return alert("Too few servants, need more than 5, " + data.length + " chosen now")
       }
       else if(data.length < 1){
-        setServantList(prevServantList => prevServantList);
         return alert("No servants to choose from, check region and filter settings")
       }
-      if(multi === true) { setServantList([]) };
       const usedID = checkIfDuplicate(data, multi);
       if(number !== undefined){
         usedID.forEach(e => {
