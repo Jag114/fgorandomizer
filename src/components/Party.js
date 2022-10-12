@@ -69,14 +69,14 @@ const Party = ({formData, region}) => {
       }
       if(multi === false){
         i = Math.floor(Math.random() * filteredAvailableIDArr.length)
-        console.log("Used IDs", usedIDArr);
-        console.log("All IDs: ", availableIDArr);
-        console.log("All usable IDs: ", filteredAvailableIDArr);
-        console.log("Chosen ID", filteredAvailableIDArr[i]);
+        const chosenID = filteredAvailableIDArr[i];
         console.log(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo));
         if(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false){
-          arrID.push(filteredAvailableIDArr[i]);
-          //find index of object with filteredAvailableIDArr[i] as collectionNo in data.data, and push it
+          data.data.forEach(e => {
+            if(e.collectionNo === chosenID){
+              arrID.push(data.data.indexOf(e));
+            }
+          })
         }
         console.log(arrID);
         return arrID;
