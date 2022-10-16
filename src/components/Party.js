@@ -17,14 +17,12 @@ import servantFetch from '../data/servantFetch';
         A. resizing
         B. class icon instead of class name, and other minimalisitc stuff*
       III. favico
+      IV. change button appearnce on hover/on click
     3. funcionality
       I*. ce randomizer
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
-      I. repeating servants with single click, instead of having multi and single,
-         change it to just single that can be called 1 or 5 times, should be easier to
-         check if servants repeat tgemselves
     * - may not be in final version
 */
 const Party = ({formData, region}) => {

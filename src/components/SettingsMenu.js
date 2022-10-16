@@ -1,11 +1,12 @@
 import "./SettingsMenu.css";
 import servantFetch from '../data/servantFetch';
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 let rarityArr = [];
 let classArr = [];
 
-const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
+const SettingsMenu = ({setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
@@ -25,7 +26,6 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
               }
             } 
           rarityArr = [...checkDuplicates(rarityArr)];
-          console.log("Rarity arr: ",rarityArr)
           return {rarity: [...rarityArr], className: [...prevFormData.className]};
         })
         break;
@@ -43,7 +43,6 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
             }
           } 
         classArr = [...checkDuplicates(classArr)];
-        console.log("Class arr: ",classArr);
         return {className: [...classArr], rarity: [...prevFormData.rarity]};
       })
         break;
@@ -82,6 +81,12 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
       localStorage.setItem("region", JSON.stringify(false))
       return "na";
     });
+  }
+
+  const navigate = useNavigate();
+
+  const handlePath = () => {
+    navigate("profile");
   }
 
     return (
@@ -158,6 +163,7 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
               <br />
             </div>
           </div>
+          <button className="settings-button" onClick={handlePath}> Go to profile </button>
           <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
         </form>
       </div>
