@@ -13,7 +13,7 @@ export default function preloadImages(data) {
       img.src = `https://static.atlasacademy.io/JP/Faces/f_${data[i].id}3.png`;
       list.push(img);
     }
-
+    console.log("Images cached");
     //console.log(list);
   }
 }

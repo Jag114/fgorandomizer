@@ -19,8 +19,8 @@ async function fetchServant(settings, region) {
   let isTrue;
   const unplayableID = [83, 149, 151, 152, 168, 240, 333];
 
-  if(localStorage.getItem("servantsData") && JSON.parse(localStorage.getItem("servantsData")).length > 0){
-    data = JSON.parse(localStorage.getItem("servantsData"));
+  if(localStorage.getItem(`servantsData-${region}`) && JSON.parse(localStorage.getItem(`servantsData-${region}`)).length > 0){
+    data = JSON.parse(localStorage.getItem(`servantsData-${region}`));
     console.log("Memory", data);
   }
   else{
@@ -33,8 +33,8 @@ async function fetchServant(settings, region) {
         }
       }
     }
-    localStorage.setItem("servantsData", JSON.stringify(data))
-    console.log("Fetched", JSON.parse(localStorage.getItem("servantsData")));
+    localStorage.setItem(`servantsData-${region}`, JSON.stringify(data))
+    console.log("Fetched", JSON.parse(localStorage.getItem(`servantsData-${region}`)));
   }
 
   if (settings.rarity.length > 0) {

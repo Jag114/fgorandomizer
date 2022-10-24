@@ -23,6 +23,8 @@ import servantFetch from '../data/servantFetch';
       II. include/exclude servants
       III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
+      I. change region > go to profile > go back to main page: region changes to na even though it is jp
+      
     * - may not be in final version
 */
 const Party = ({formData, region}) => {

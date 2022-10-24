@@ -8,6 +8,13 @@ let classArr = [];
 
 const SettingsMenu = ({setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
+
+  const navigate = useNavigate();
+
+  const handlePath = () => {
+    navigate("profile");
+  }
+  
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
     const { name, value, checked } = event.target;
@@ -72,28 +79,19 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
   }
 
   const changeServerData = () => {
-    localStorage.setItem("servantsData", JSON.stringify([]));
     setRegion((prevRegion) => {
       if(prevRegion === "na"){
-        localStorage.setItem("region", JSON.stringify(true))
         return "jp";
       }
-      localStorage.setItem("region", JSON.stringify(false))
       return "na";
     });
-  }
-
-  const navigate = useNavigate();
-
-  const handlePath = () => {
-    navigate("profile");
   }
 
     return (
       <div className="settings-menu">
         <form>
         <label className="switch">
-          <input type="checkbox" onChange={changeServerData} checked={JSON.parse(localStorage.getItem("region"))}/>
+          <input type="checkbox" onChange={changeServerData}/>
           <span className="slider round"></span>
         </label>
           <div className="settings-rarity">
