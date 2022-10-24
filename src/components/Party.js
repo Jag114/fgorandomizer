@@ -18,12 +18,11 @@ import servantFetch from '../data/servantFetch';
         B. class icon instead of class name, and other minimalisitc stuff*
       III. favico
       IV. change button appearnce on hover/on click
+      V. user profile
     3. funcionality
       I*. ce randomizer
       II. include/exclude servants
-      III. user profile (legit or local storage) that saves included/excluded servants (router)
     4. bugs
-      I. change region > go to profile > go back to main page: region changes to na even though it is jp
       
     * - may not be in final version
 */

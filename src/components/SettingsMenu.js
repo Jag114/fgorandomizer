@@ -11,8 +11,14 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
 
   const navigate = useNavigate();
 
-  const handlePath = () => {
-    navigate("profile");
+  const handlePath = (e) => {
+    e.preventDefault();
+    if(!localStorage.getItem(`servantsData-${region}`)){
+      servantFetch({rarity: [], className: []}, region).then(() => navigate("profile"));
+    }
+    else{
+      navigate("profile");
+    }
   }
   
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
@@ -91,7 +97,7 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
       <div className="settings-menu">
         <form>
         <label className="switch">
-          <input type="checkbox" onChange={changeServerData}/>
+          <input type="checkbox" onChange={changeServerData} checked={region === "na" ? false : true}/>
           <span className="slider round"></span>
         </label>
           <div className="settings-rarity">

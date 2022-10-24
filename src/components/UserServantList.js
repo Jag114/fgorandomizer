@@ -1,9 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import servantFetch from "../data/servantFetch";
 import "./UserServantList.css";
 
-const ServantCard = () => {
-  return <div>Hello</div>;
+const ServantCard = (props) => {
+  return (
+    <div>
+      <p> {props.name} </p>
+      <p> {props.className} </p>
+      <p> {props.rarity} </p>
+    </div>
+  );
 };
 
 const UserServantList = ({ formData, region }) => {
@@ -13,27 +18,24 @@ const UserServantList = ({ formData, region }) => {
     navigate("/");
   };
 
-  let servantCards = [];
-  let servantCard = [];
+  const servantCardsData = JSON.parse(localStorage.getItem(`servantsData-${region}`));
 
-  servantFetch(formData, region).then((data) => {
-    console.log(data);
-    data.data.forEach((e) => {
-      servantCards.push(e);
-    });
-
-    servantCard = servantCards.map((s) => (
-      <ServantCard key={s.collectionNo} />
-    ));
-  });
+  const servantCards = servantCardsData.map((e) => (
+    <ServantCard
+      key={e.collectionNo}
+      name={e.name}
+      className={e.className}
+      rarity={e.rarity}
+    />
+  ));
 
   return (
     <div className="servant-net">
-      Your servant list
+      Your servant list, total number of servants is: {servantCards.length}
       <button className="change-path-button" onClick={handlePath}>
         Go back to randomizer
       </button>
-      {servantCard}
+      {servantCards}
     </div>
   );
 };
