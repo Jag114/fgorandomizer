@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Party.css';
 import Servant from './Servant';
 import servantFetch from '../data/servantFetch';
