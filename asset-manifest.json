@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fgorandomizer/static/css/main.d32db497.css",
-    "main.js": "/fgorandomizer/static/js/main.7d8c5b9f.js",
+    "main.css": "/fgorandomizer/static/css/main.d2171b1c.css",
+    "main.js": "/fgorandomizer/static/js/main.f3730af0.js",
     "index.html": "/fgorandomizer/index.html",
-    "main.d32db497.css.map": "/fgorandomizer/static/css/main.d32db497.css.map",
-    "main.7d8c5b9f.js.map": "/fgorandomizer/static/js/main.7d8c5b9f.js.map"
+    "main.d2171b1c.css.map": "/fgorandomizer/static/css/main.d2171b1c.css.map",
+    "main.f3730af0.js.map": "/fgorandomizer/static/js/main.f3730af0.js.map"
   },
   "entrypoints": [
-    "static/css/main.d32db497.css",
-    "static/js/main.7d8c5b9f.js"
+    "static/css/main.d2171b1c.css",
+    "static/js/main.f3730af0.js"
   ]
 }
