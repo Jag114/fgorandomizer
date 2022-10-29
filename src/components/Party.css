@@ -3,10 +3,19 @@ body{
 }
 
 .button{
+    height: 2rem;
+    width: 15rem;
+    border-radius: 10%;
+    font-size: 1.2rem;
     float: left;
     border: none;
     background-color: gold;
     font-weight: bold;
+    cursor:pointer;
+}
+
+.button:hover{
+    background-color: rgba(255, 215, 0, .6);
 }
 
 .buttonHolder{

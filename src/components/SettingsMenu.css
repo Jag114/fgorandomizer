@@ -6,6 +6,8 @@
   position: absolute;
   text-align: center;
   border: 2px solid black;
+  margin-bottom: 30rem;
+  background-color:  rgba(19, 118, 175, .4);
 }
 
 .settings-checkbox+.settings-checkbox {
@@ -74,7 +76,7 @@
 
 .switch::after{
   position: absolute;
-  content: "Japan";
+  content: "JP";
   height: 15px;
   width: 15px;
   left: 45px;

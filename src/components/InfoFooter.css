@@ -1,8 +1,8 @@
 footer{
+    height: 6rem;
+    padding-top: .4rem;
     text-align: center;
-    margin-top: 30rem;
-    background-color: rgb(185, 184, 184);
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    position: absolute;
+    margin-top: 29rem;
 }
