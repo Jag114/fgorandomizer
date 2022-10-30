@@ -1,6 +1,6 @@
 import "./SettingsMenu.css";
 import servantFetch from '../data/servantFetch';
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import React from "react";
 
 let rarityArr = [];
@@ -9,17 +9,17 @@ let classArr = [];
 const SettingsMenu = ({setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
-  const handlePath = (e) => {
-    e.preventDefault();
-    if(!localStorage.getItem(`servantsData-${region}`)){
-      servantFetch({rarity: [], className: []}, region).then(() => navigate("profile"));
-    }
-    else{
-      navigate("profile");
-    }
-  }
+  // const handlePath = (e) => {
+  //   e.preventDefault();
+  //   if(!localStorage.getItem(`servantsData-${region}`)){
+  //     servantFetch({rarity: [], className: []}, region).then(() => navigate("profile"));
+  //   }
+  //   else{
+  //     navigate("profile");
+  //   }
+  // }
   
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
