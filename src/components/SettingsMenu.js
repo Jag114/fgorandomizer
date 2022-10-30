@@ -171,7 +171,7 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
               <br />
             </div>
           </div>
-          <button className="settings-button" onClick={handlePath}> Go to profile </button>
+          
           <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
         </form>
       </div>
