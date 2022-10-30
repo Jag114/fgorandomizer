@@ -147,9 +147,13 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
               <br />
               <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="alterEgo"/>
               <label>Alter Ego</label>
-              <br />
-              <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="pretender"/>
-              <label>Pretender</label>
+              {region === "jp" ? 
+              <>
+                <br />
+                <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="pretender"/>
+                <label>Pretender</label> 
+              </>
+              : null}
               <br />
               <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="class" value="shielder"/>
               <label>Shielder</label>
