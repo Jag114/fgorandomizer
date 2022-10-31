@@ -1,40 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
+import ServantCard from "./ServantCard";
 
-const ServantCard = (props) => {
-
-  const classIcon = (className) => {
-    className = className.toLowerCase();
-    switch (className) {
-      case "saber":
-        return "SEIBA!";
-      default:
-        return className;
-    }
-  }
-
-  const rarityIcon = (length) => {
-    if(length === 0){
-      return 0;
-    }
-    let stars = "";
-    while(length > 0){
-      stars += "⋆"; 
-      length--;
-    }
-    return stars;
-  }
-
-  return (
-    <div className="profile-servant-net-card">
-      <p> {props.name} </p>
-      <p> {classIcon(props.className)} </p>
-      <p> {rarityIcon(props.rarity)} </p>
-    </div>
-  );
-};
-
-const UserServantList = ({region }) => {
+const UserServantList = ({region, userProfile}) => {
   const navigate = useNavigate();
 
   const handlePath = () => {
@@ -46,19 +14,38 @@ const UserServantList = ({region }) => {
   const servantCards = servantCardsData.map((e) => (
     <ServantCard
       key={e.collectionNo}
+      id={e.collectionNo}
       name={e.name}
       className={e.className}
       rarity={e.rarity}
+      userProfile={userProfile}
     />
   ));
+
+  const checkAll = () => {
+    var checkboxes = document.getElementsByName('include');
+    for (var checkbox of checkboxes) {
+      if(checkbox.checked === true){
+        //change state: delete, save profile to localStorage
+        checkbox.checked = false;
+      }else{
+        //change state: add, save profile to localStorage
+        checkbox.checked = true;
+      }
+    }
+  }
 
   return (
     <main>
       <div className="profile-header">
-        <p className="profile-header-text"> Your servant list, total number of servants is: {servantCards.length} </p>
+        <p className="profile-header-text"> Your servant list, total number of servants is: {servantCards.length}, current region: {region.toUpperCase()} </p>
         <button className="profile-change-path-button" onClick={handlePath}>
           Go back to randomizer
         </button>
+      </div>
+      <div className="profile-header-2">
+        <label> Select all </label> 
+        <input type="checkbox" name="selectAll" onClick={checkAll}/>
       </div>
       <div className="profile-servant-net">
         {servantCards}

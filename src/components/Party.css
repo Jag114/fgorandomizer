@@ -2,6 +2,15 @@ body{
     margin: 0;
 }
 
+@media screen and (max-width: 700px) {
+    .party{
+        height: 230px; 
+        display: flex;
+        justify-content: center; 
+        scale: 0.6;
+    }
+}
+
 .button{
     height: 2rem;
     width: 15rem;

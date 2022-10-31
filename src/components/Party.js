@@ -9,24 +9,19 @@ import servantFetch from '../data/servantFetch';
       I*. choose cost
     2. appearance
       I. finish desktop viewport
-        A. header, footer
-        B. background
-        C. stylize buttons
         D. fancy font*
       II. finish mobile viewport
         A. resizing
-        B. class icon instead of class name, and other minimalisitc stuff*
       III. favico
       IV. change button appearnce on hover/on click
       V. user profile
     3. funcionality
       I*. ce randomizer
-      II. include/exclude servants
     4. bugs
       
     * - may not be in final version
 */
-const Party = ({formData, region}) => {
+const Party = ({formData, region, userProfile}) => {
   //default servant template
   const servant = {
     id: 0,
@@ -50,13 +45,19 @@ const Party = ({formData, region}) => {
     let arrID = []
     let breakNr = 0;
     let i;
+    
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
     })
     let availableIDArr = data.data.map(e => { //ids from all servants currently available
       return e.collectionNo;
     })
-    let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available - ids used in party on screen
+    if(userProfile.length > 0){
+      availableIDArr = availableIDArr.filter(e => { //ids from all servants currently available - servants not included in users profile
+        return userProfile.includes(e);
+      })
+    }
+    let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
       return usedIDArr.indexOf(id) === -1;
     })
     

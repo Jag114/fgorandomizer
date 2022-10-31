@@ -6,9 +6,11 @@ function useSettings() {
     className: [],
   });
 
-  const [region, setRegion] = useState("na");
-  
-  return [formData, setFormData, region, setRegion];
+  const [ region, setRegion ] = useState("na");
+
+  const [ userProfile, setUserProfile ] = useState([]);
+
+  return [ formData, setFormData, region, setRegion, userProfile, setUserProfile ];
 }
 
 export default useSettings;

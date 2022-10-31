@@ -7,19 +7,19 @@ import InfoFooter from "./components/InfoFooter";
 
 const App = () => {
 
-  const [formData, setFormData, region, setRegion ] = useSettings()
+  const [formData, setFormData, region, setRegion, userProfile, setUserProfile  ] = useSettings()
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={
           <>
-            <Party formData={formData} region={region}/>
-            <SettingsMenu formData={formData} setFormData={setFormData} region={region} setRegion={setRegion}/>
+            <Party formData={formData} region={region} userProfile={userProfile} />
+            <SettingsMenu formData={formData} setFormData={setFormData} region={region} setRegion={setRegion} />
             <InfoFooter/>
           </>
         }/>
-        <Route path="profile" element={<UserServantList formData={formData} region={region}/>}/>
+        <Route path="profile" element={<UserServantList region={region} userProfile={userProfile} setUserProfile={setUserProfile}  />}/>
       </Routes>
     </BrowserRouter>
   );
