@@ -6,7 +6,7 @@ import React from "react";
 let rarityArr = [];
 let classArr = [];
 
-const SettingsMenu = ({setFormData, region, setRegion}) => {
+const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
 
   const navigate = useNavigate();
@@ -93,6 +93,19 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
     });
   }
 
+  const checkAll = (type) => {
+    var checkboxes = document.getElementsByName(type);
+    for (var checkbox of checkboxes) {
+      if(checkbox.checked === true){
+        type === "rarity" ? rarityArr = [] : classArr = [];
+        checkbox.checked = false;
+      }else{
+        type === "rarity" ? rarityArr.push(parseInt(checkbox.value)) : classArr.push(checkbox.value);
+        checkbox.checked = true;
+      }
+    }
+  }
+
     return (
       <div className="settings-menu">
         <form>
@@ -173,6 +186,10 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
           </div>
           <button className="settings-button" onClick={handlePath}> Go to profile </button>
           <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
+          <label> Select all classes</label>
+          <input type="checkbox" onChange={() => checkAll("class")}/>
+          <label> Select all rarities</label>
+          <input type="checkbox" onChange={() => checkAll("rarity")}/>
         </form>
       </div>
     )
