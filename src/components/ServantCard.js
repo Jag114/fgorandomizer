@@ -18,12 +18,24 @@ const ServantCard = (props) => {
       return stars;
     }
 
+ 
+
     const handleChange = () => {
       const {userProfile, setUserProfile} = props;
-      if(props.userProfile.includes(props.id)){
+      if(userProfile.includes(props.id)){
         //change state: delete, save profile to localStorage
+        setUserProfile(prevUserProfile => {
+          prevUserProfile.splice(prevUserProfile.indexOf(props.id), 1)
+          return prevUserProfile;
+        })
+        console.log("User profile: ",props.userProfile);
       }else{
         //change state: add, save profile to localStorage
+        setUserProfile(prevUserProfile => {
+          prevUserProfile.push(props.id)
+          return prevUserProfile;
+        })
+        console.log("User profile: ",props.userProfile);
       }
     }
   

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 
-const UserServantList = ({region, userProfile}) => {
+const UserServantList = ({region, userProfile, setUserProfile}) => {
   const navigate = useNavigate();
 
   const handlePath = () => {
@@ -19,6 +19,7 @@ const UserServantList = ({region, userProfile}) => {
       className={e.className}
       rarity={e.rarity}
       userProfile={userProfile}
+      setUserProfile={setUserProfile}
     />
   ));
 

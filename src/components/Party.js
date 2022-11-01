@@ -15,9 +15,15 @@ import servantFetch from '../data/servantFetch';
       III. favico
       IV. change button appearnce on hover/on click
       V. user profile
+        A. keeps it in local storage
+        B. keep checkboxes un/checked between pages
     3. funcionality
       I*. ce randomizer
     4. bugs
+      I. profile:
+        A. if not enough servants chosen e.g 1, multi button puts mash into slot nr 1 and leaves it at that,
+        B. if servants chosen in user profile, multi button only takes servants with IDs 1-n 
+          (where n is number of servants chosen), single works as intended 
       
     * - may not be in final version
 */
@@ -57,10 +63,11 @@ const Party = ({formData, region, userProfile}) => {
         return userProfile.includes(e);
       })
     }
+    console.log("availableIDArr: ",availableIDArr);
     let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
       return usedIDArr.indexOf(id) === -1;
     })
-    
+    console.log("filteredAvailableIDArr: ",filteredAvailableIDArr);
     while(arrID.length < 5){
       if(breakNr > 1000) break;
       i = Math.floor(Math.random() * availableIDArr.length); //arr index, not id nr
@@ -70,7 +77,6 @@ const Party = ({formData, region, userProfile}) => {
       if(multi === false){
         i = Math.floor(Math.random() * filteredAvailableIDArr.length)
         const chosenID = filteredAvailableIDArr[i];
-        console.log(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo));
         if(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false){
           data.data.forEach(e => {
             if(e.collectionNo === chosenID){
@@ -78,7 +84,6 @@ const Party = ({formData, region, userProfile}) => {
             }
           })
         }
-        console.log(arrID);
         return arrID;
       }
       if(arrID.includes(i) === false){
@@ -86,6 +91,7 @@ const Party = ({formData, region, userProfile}) => {
       }
       breakNr++;
     }
+    console.log(arrID);
     return arrID;
   }
 

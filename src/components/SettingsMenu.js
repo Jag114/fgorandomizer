@@ -1,12 +1,11 @@
 import "./SettingsMenu.css";
 import servantFetch from '../data/servantFetch';
 import { useNavigate } from "react-router-dom";
-import React from "react";
 
 let rarityArr = [];
 let classArr = [];
 
-const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
+const SettingsMenu = ({setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
 
   const navigate = useNavigate();
