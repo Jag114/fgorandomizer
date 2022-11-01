@@ -8,7 +8,7 @@ function useSettings() {
 
   const [ region, setRegion ] = useState("na");
 
-  const [ userProfile, setUserProfile ] = useState([]);
+  const [ userProfile, setUserProfile ] = useState([24,65,5,43,100]);
 
   return [ formData, setFormData, region, setRegion, userProfile, setUserProfile ];
 }

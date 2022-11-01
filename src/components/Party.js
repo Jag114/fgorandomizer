@@ -24,6 +24,7 @@ import servantFetch from '../data/servantFetch';
         A. if not enough servants chosen e.g 1, multi button puts mash into slot nr 1 and leaves it at that,
         B. if servants chosen in user profile, multi button only takes servants with IDs 1-n 
           (where n is number of servants chosen), single works as intended 
+          reason - unplayableIDs fuck up array indexes, dont delete them in fetch, skip them here
       
     * - may not be in final version
 */
@@ -63,11 +64,13 @@ const Party = ({formData, region, userProfile}) => {
         return userProfile.includes(e);
       })
     }
-    console.log("availableIDArr: ",availableIDArr);
     let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
       return usedIDArr.indexOf(id) === -1;
     })
-    console.log("filteredAvailableIDArr: ",filteredAvailableIDArr);
+    console.log("usedIDArr: ", usedIDArr);
+    console.log("avaiableIDArr: ", availableIDArr);
+    console.log("filteredAvaialbleIDArr: ", filteredAvailableIDArr);
+    console.log("User profile: ", userProfile);
     while(arrID.length < 5){
       if(breakNr > 1000) break;
       i = Math.floor(Math.random() * availableIDArr.length); //arr index, not id nr
@@ -86,12 +89,13 @@ const Party = ({formData, region, userProfile}) => {
         }
         return arrID;
       }
-      if(arrID.includes(i) === false){
-        arrID.push(i);
+      if(arrID.includes(i) === false && (arrID.includes(filteredAvailableIDArr[i])) === false){
+        console.log("FilteredIDArr z pozycjami: ", i, filteredAvailableIDArr[i]); 
+        arrID.push(filteredAvailableIDArr[i]);
       }
       breakNr++;
     }
-    console.log(arrID);
+    console.log("Arr ID: ",arrID);
     return arrID;
   }
 
@@ -109,7 +113,7 @@ const Party = ({formData, region, userProfile}) => {
         return alert("No servants to choose from, check region and filter settings")
       }
       const usedID = checkIfDuplicate(data, multi);
-      if(number !== undefined){
+      if(number !== undefined){ //single
         usedID.forEach(e => {
           setServantList(prevServantList => {
             prevServantList[number] = {
@@ -122,7 +126,7 @@ const Party = ({formData, region, userProfile}) => {
           return [...prevServantList]
         })
         })
-      }else{
+      }else{ //multi
         usedID.forEach((e,nr) => {
           setServantList(prevServantList => {
             prevServantList[nr] = {
