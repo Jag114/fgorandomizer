@@ -59,7 +59,6 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
         </button>
       </div>
       <div className="profile-header-2">
-        <br/>
         <button onClick={resetLocalStorage}> RESET PROFILE </button>
       </div>
       <div className="profile-servant-net">
