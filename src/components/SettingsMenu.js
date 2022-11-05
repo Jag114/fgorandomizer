@@ -183,12 +183,14 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
               <br />
             </div>
           </div>
-          <button className="settings-button" onClick={handlePath}> Go to profile </button>
-          <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
+          <br/>
           <label> Select all classes</label>
           <input type="checkbox" onChange={() => checkAll("class")}/>
           <label> Select all rarities</label>
           <input type="checkbox" onChange={() => checkAll("rarity")}/>
+          <br/>
+          <button className="settings-button" onClick={handlePath}> Go to profile </button>
+          <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
         </form>
       </div>
     )

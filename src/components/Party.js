@@ -20,11 +20,6 @@ import servantFetch from '../data/servantFetch';
     3. funcionality
       I*. ce randomizer
     4. bugs
-      I. profile:
-        A. if not enough servants chosen e.g 1, multi button puts mash into slot nr 1 and leaves it at that,
-        B. if servants chosen in user profile, multi button only takes servants with IDs 1-n 
-          (where n is number of servants chosen), single works as intended 
-          reason - unplayableIDs fuck up array indexes, dont delete them in fetch, skip them here
       
     * - may not be in final version
 */
@@ -52,6 +47,7 @@ const Party = ({formData, region, userProfile}) => {
     let arrID = []
     let breakNr = 0;
     let i;
+    //const unplayableID = [83, 149, 151, 152, 168, 240, 333]; not needed for now
     
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
@@ -67,10 +63,16 @@ const Party = ({formData, region, userProfile}) => {
     let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
       return usedIDArr.indexOf(id) === -1;
     })
+
+    if(filteredAvailableIDArr.length === 0){
+      alert("All available servants are on the screen right now, can't randomize.")
+    }
+
     console.log("usedIDArr: ", usedIDArr);
     console.log("avaiableIDArr: ", availableIDArr);
     console.log("filteredAvaialbleIDArr: ", filteredAvailableIDArr);
     console.log("User profile: ", userProfile);
+
     while(arrID.length < 5){
       if(breakNr > 1000) break;
       i = Math.floor(Math.random() * availableIDArr.length); //arr index, not id nr
@@ -78,7 +80,7 @@ const Party = ({formData, region, userProfile}) => {
         arrID.push(i);
       }
       if(multi === false){
-        i = Math.floor(Math.random() * filteredAvailableIDArr.length)
+        i = Math.floor(Math.random() * filteredAvailableIDArr.length);//arr index, not id nr
         const chosenID = filteredAvailableIDArr[i];
         if(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false){
           data.data.forEach(e => {
@@ -89,10 +91,16 @@ const Party = ({formData, region, userProfile}) => {
         }
         return arrID;
       }
-      if(arrID.includes(i) === false && (arrID.includes(filteredAvailableIDArr[i])) === false){
-        console.log("FilteredIDArr z pozycjami: ", i, filteredAvailableIDArr[i]); 
-        arrID.push(filteredAvailableIDArr[i]);
-      }
+      
+        const chosenID = availableIDArr[i];
+        data.data.forEach(e => {
+          if(e.collectionNo === chosenID){
+            if(arrID.includes(data.data.indexOf(e)) === false){
+              arrID.push(data.data.indexOf(e));
+            }
+          }
+        })
+      
       breakNr++;
     }
     console.log("Arr ID: ",arrID);
