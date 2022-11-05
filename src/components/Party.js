@@ -9,24 +9,22 @@ import servantFetch from '../data/servantFetch';
       I*. choose cost
     2. appearance
       I. finish desktop viewport
-        A. header, footer
-        B. background
-        C. stylize buttons
         D. fancy font*
       II. finish mobile viewport
         A. resizing
-        B. class icon instead of class name, and other minimalisitc stuff*
       III. favico
       IV. change button appearnce on hover/on click
       V. user profile
+        A. keeps it in local storage
+        B. keep checkboxes un/checked between pages
     3. funcionality
       I*. ce randomizer
-      II. include/exclude servants
     4. bugs
       
     * - may not be in final version
 */
-const Party = ({formData, region}) => {
+const Party = ({formData, region, userProfile}) => {
+  
   //default servant template
   const servant = {
     id: 0,
@@ -50,16 +48,32 @@ const Party = ({formData, region}) => {
     let arrID = []
     let breakNr = 0;
     let i;
+    //const unplayableID = [83, 149, 151, 152, 168, 240, 333]; not needed for now
+    
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
     })
     let availableIDArr = data.data.map(e => { //ids from all servants currently available
       return e.collectionNo;
     })
-    let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available - ids used in party on screen
+    if(userProfile.length > 0){
+      availableIDArr = availableIDArr.filter(e => { //ids from all servants currently available - servants not included in users profile
+        return userProfile.includes(e);
+      })
+    }
+    let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
       return usedIDArr.indexOf(id) === -1;
     })
-    
+
+    if(filteredAvailableIDArr.length === 0){
+      alert("All available servants are on the screen right now, can't randomize.")
+    }
+
+    console.log("usedIDArr: ", usedIDArr);
+    console.log("avaiableIDArr: ", availableIDArr);
+    console.log("filteredAvaialbleIDArr: ", filteredAvailableIDArr);
+    console.log("User profile: ", userProfile);
+
     while(arrID.length < 5){
       if(breakNr > 1000) break;
       i = Math.floor(Math.random() * availableIDArr.length); //arr index, not id nr
@@ -67,9 +81,8 @@ const Party = ({formData, region}) => {
         arrID.push(i);
       }
       if(multi === false){
-        i = Math.floor(Math.random() * filteredAvailableIDArr.length)
+        i = Math.floor(Math.random() * filteredAvailableIDArr.length);//arr index, not id nr
         const chosenID = filteredAvailableIDArr[i];
-        console.log(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo));
         if(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false){
           data.data.forEach(e => {
             if(e.collectionNo === chosenID){
@@ -77,14 +90,21 @@ const Party = ({formData, region}) => {
             }
           })
         }
-        console.log(arrID);
         return arrID;
       }
-      if(arrID.includes(i) === false){
-        arrID.push(i);
-      }
+      
+        const chosenID = availableIDArr[i];
+        data.data.forEach(e => {
+          if(e.collectionNo === chosenID){
+            if(arrID.includes(data.data.indexOf(e)) === false){
+              arrID.push(data.data.indexOf(e));
+            }
+          }
+        })
+      
       breakNr++;
     }
+    console.log("Arr ID: ",arrID);
     return arrID;
   }
 
@@ -102,7 +122,7 @@ const Party = ({formData, region}) => {
         return alert("No servants to choose from, check region and filter settings")
       }
       const usedID = checkIfDuplicate(data, multi);
-      if(number !== undefined){
+      if(number !== undefined){ //single
         usedID.forEach(e => {
           setServantList(prevServantList => {
             prevServantList[number] = {
@@ -115,7 +135,7 @@ const Party = ({formData, region}) => {
           return [...prevServantList]
         })
         })
-      }else{
+      }else{ //multi
         usedID.forEach((e,nr) => {
           setServantList(prevServantList => {
             prevServantList[nr] = {

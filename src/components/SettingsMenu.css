@@ -1,6 +1,6 @@
 .settings-menu {
   width: 98%;
-  height: 220px;
+  height: 240px;
   margin-left: 1%;
   margin-top: 20px;
   position: absolute;
@@ -54,7 +54,7 @@
 }
 
 .settings-button {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .switch {

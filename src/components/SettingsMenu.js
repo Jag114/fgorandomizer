@@ -1,6 +1,6 @@
 import "./SettingsMenu.css";
 import servantFetch from '../data/servantFetch';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 let rarityArr = [];
@@ -9,17 +9,17 @@ let classArr = [];
 const SettingsMenu = ({setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
 
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const handlePath = (e) => {
-  //   e.preventDefault();
-  //   if(!localStorage.getItem(`servantsData-${region}`)){
-  //     servantFetch({rarity: [], className: []}, region).then(() => navigate("profile"));
-  //   }
-  //   else{
-  //     navigate("profile");
-  //   }
-  // }
+  const handlePath = (e) => {
+    e.preventDefault();
+    if(!localStorage.getItem(`servantsData-${region}`)){
+      servantFetch({rarity: [], className: []}, region).then(() => navigate("profile"));
+    }
+    else{
+      navigate("profile");
+    }
+  }
   
   //adds/removes class/rarity limitations from settings form to 2 separate arrays
   const handleChange = (event) => {
@@ -91,6 +91,19 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
       }
       return "na";
     });
+  }
+
+  const checkAll = (type) => {
+    let checkboxes = document.getElementsByName(type);
+    for (let checkbox of checkboxes) {
+      if(checkbox.checked === true){
+        type === "rarity" ? rarityArr = [] : classArr = [];
+        checkbox.checked = false;
+      }else{
+        type === "rarity" ? rarityArr.push(parseInt(checkbox.value)) : classArr.push(checkbox.value);
+        checkbox.checked = true;
+      }
+    }
   }
 
     return (
@@ -171,7 +184,13 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
               <br />
             </div>
           </div>
-          
+          <br/>
+          <label> Select all classes</label>
+          <input type="checkbox" onChange={() => checkAll("class")}/>
+          <label> Select all rarities</label>
+          <input type="checkbox" onChange={() => checkAll("rarity")}/>
+          <br/>
+          <button className="settings-button" onClick={handlePath}> Go to profile </button>
           <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
         </form>
       </div>
