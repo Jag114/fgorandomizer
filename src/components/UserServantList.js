@@ -59,8 +59,6 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
         </button>
       </div>
       <div className="profile-header-2">
-        <label> Select all </label> 
-        <input type="checkbox" name="selectAll" onClick={checkAll}/>
         <br/>
         <button onClick={resetLocalStorage}> RESET PROFILE </button>
       </div>
