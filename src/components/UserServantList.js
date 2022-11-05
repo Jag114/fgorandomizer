@@ -9,6 +9,12 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
     navigate("/");
   };
 
+  if(localStorage.getItem("userProfile") === null || localStorage.getItem("userProfile") === ""){
+    console.log("Weszlo");
+    const emptyArray = [];
+    localStorage.setItem("userProfile", JSON.stringify(emptyArray));
+  }
+  
   const servantCardsData = JSON.parse(localStorage.getItem(`servantsData-${region}`));
 
   const servantCards = servantCardsData.map((e) => (
@@ -24,10 +30,13 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
   ));
 
   const checkAll = () => {
-    var checkboxes = document.getElementsByName('include');
-    for (var checkbox of checkboxes) {
+    let checkboxes = document.getElementsByName('include');
+    console.log(checkboxes);
+    for (let checkbox of checkboxes) {
       if(checkbox.checked === true){
         //change state: delete, save profile to localStorage
+        let checkedServantCards = [];
+        checkedServantCards.push()
         checkbox.checked = false;
       }else{
         //change state: add, save profile to localStorage

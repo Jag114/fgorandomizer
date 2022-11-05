@@ -7,7 +7,7 @@ function useSettings() {
   });
 
   const [ region, setRegion ] = useState("na");
-
+  
   const [ userProfile, setUserProfile ] = useState([]);
 
   return [ formData, setFormData, region, setRegion, userProfile, setUserProfile ];

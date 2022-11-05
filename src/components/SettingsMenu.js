@@ -93,8 +93,8 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
   }
 
   const checkAll = (type) => {
-    var checkboxes = document.getElementsByName(type);
-    for (var checkbox of checkboxes) {
+    let checkboxes = document.getElementsByName(type);
+    for (let checkbox of checkboxes) {
       if(checkbox.checked === true){
         type === "rarity" ? rarityArr = [] : classArr = [];
         checkbox.checked = false;

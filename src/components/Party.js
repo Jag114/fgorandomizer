@@ -24,6 +24,7 @@ import servantFetch from '../data/servantFetch';
     * - may not be in final version
 */
 const Party = ({formData, region, userProfile}) => {
+  
   //default servant template
   const servant = {
     id: 0,

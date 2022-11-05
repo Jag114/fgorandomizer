@@ -14,7 +14,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={
           <>
-            <Party formData={formData} region={region} userProfile={userProfile} />
+            <Party formData={formData} region={region} userProfile={userProfile} setUserProfile={setUserProfile} />
             <SettingsMenu formData={formData} setFormData={setFormData} region={region} setRegion={setRegion} />
             <InfoFooter/>
           </>
