@@ -45,6 +45,11 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
     }
   }
 
+  const resetLocalStorage = () => {
+    localStorage.setItem("userProfile", []);
+    setUserProfile([]);
+  }
+
   return (
     <main>
       <div className="profile-header">
@@ -56,6 +61,8 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
       <div className="profile-header-2">
         <label> Select all </label> 
         <input type="checkbox" name="selectAll" onClick={checkAll}/>
+        <br/>
+        <button onClick={resetLocalStorage}> RESET PROFILE </button>
       </div>
       <div className="profile-servant-net">
         {servantCards}
