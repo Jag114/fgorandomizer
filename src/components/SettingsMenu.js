@@ -80,7 +80,7 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
 
   const reFetchData = (e) => {
     e.preventDefault();
-    localStorage.setItem("servantsData", JSON.stringify([]))
+    localStorage.setItem(`servantsData-${region}`, JSON.stringify([]))
     servantFetch({rarity: [], className: []}, region);
   }
 
