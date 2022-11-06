@@ -17,6 +17,7 @@ async function fetchServant(settings, region) {
   let data = [];
   let modifiedData = [];
   let isTrue;
+  const unplayableID = [83, 149, 151, 152, 168, 240, 333];
 
   if(localStorage.getItem(`servantsData-${region}`) && JSON.parse(localStorage.getItem(`servantsData-${region}`)).length > 0){
     data = JSON.parse(localStorage.getItem(`servantsData-${region}`));
@@ -25,6 +26,13 @@ async function fetchServant(settings, region) {
   else{
     const response = await fetch(url);
     data = await response.json();
+    for (let i = 0; i < data.length; i++) {
+      for (let j = 0; j < unplayableID.length; j++) {
+        if (data[i].collectionNo === unplayableID[j]) {
+          data.splice(i, 1);
+        }
+      }
+    }
     localStorage.setItem(`servantsData-${region}`, JSON.stringify(data))
     console.log("Fetched", JSON.parse(localStorage.getItem(`servantsData-${region}`)));
   }
