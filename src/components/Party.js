@@ -7,18 +7,20 @@ import servantFetch from '../data/servantFetch';
   TODO:
     1. settings
       I*. choose cost
+      II. user profile filters, sorting
     2. appearance
       I. finish desktop viewport
-        D. fancy font*
+        A. fancy font*
+        B. user profile
       II. finish mobile viewport
         A. resizing
+        B. user profile
       III. favico
       IV. change button appearnce on hover/on click
-      V. user profile
-        A. keeps it in local storage
-        B. keep checkboxes un/checked between pages
+        A. filters
     3. funcionality
       I*. ce randomizer
+      II. separate userProfiles for regions so they dont create glitches
     4. bugs
       
     * - may not be in final version
@@ -48,8 +50,11 @@ const Party = ({formData, region}) => {
     let arrID = []
     let breakNr = 0;
     let i;
+    if(!localStorage.getItem("userProfile")){
+      localStorage.setItem("userProfile", JSON.stringify([]));
+    }
     const savedProfile = [...JSON.parse(localStorage.getItem("userProfile"))];
-    
+
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
     })
