@@ -23,7 +23,7 @@ import servantFetch from '../data/servantFetch';
       
     * - may not be in final version
 */
-const Party = ({formData, region, userProfile}) => {
+const Party = ({formData, region}) => {
   
   //default servant template
   const servant = {
@@ -48,7 +48,7 @@ const Party = ({formData, region, userProfile}) => {
     let arrID = []
     let breakNr = 0;
     let i;
-    //const unplayableID = [83, 149, 151, 152, 168, 240, 333]; not needed for now
+    const savedProfile = [...JSON.parse(localStorage.getItem("userProfile"))];
     
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
@@ -56,9 +56,9 @@ const Party = ({formData, region, userProfile}) => {
     let availableIDArr = data.data.map(e => { //ids from all servants currently available
       return e.collectionNo;
     })
-    if(userProfile.length > 0){
+    if(savedProfile.length > 0){
       availableIDArr = availableIDArr.filter(e => { //ids from all servants currently available - servants not included in users profile
-        return userProfile.includes(e);
+        return savedProfile.includes(e);
       })
     }
     let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
@@ -72,7 +72,7 @@ const Party = ({formData, region, userProfile}) => {
     console.log("usedIDArr: ", usedIDArr);
     console.log("avaiableIDArr: ", availableIDArr);
     console.log("filteredAvaialbleIDArr: ", filteredAvailableIDArr);
-    console.log("User profile: ", userProfile);
+    console.log("User profile: ", savedProfile);
 
     while(arrID.length < 5){
       if(breakNr > 1000) break;

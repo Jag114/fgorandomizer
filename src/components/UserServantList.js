@@ -2,18 +2,12 @@ import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 
-const UserServantList = ({region, userProfile, setUserProfile}) => {
+const UserServantList = ({region}) => {
   const navigate = useNavigate();
 
   const handlePath = () => {
     navigate("/");
   };
-
-  if(localStorage.getItem("userProfile") === null || localStorage.getItem("userProfile") === ""){
-    console.log("Weszlo");
-    const emptyArray = [];
-    localStorage.setItem("userProfile", JSON.stringify(emptyArray));
-  }
   
   const servantCardsData = JSON.parse(localStorage.getItem(`servantsData-${region}`));
 
@@ -24,8 +18,6 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
       name={e.name}
       className={e.className}
       rarity={e.rarity}
-      userProfile={userProfile}
-      setUserProfile={setUserProfile}
     />
   ));
 
@@ -46,8 +38,7 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
   }
 
   const resetLocalStorage = () => {
-    localStorage.setItem("userProfile", []);
-    setUserProfile([]);
+    localStorage.setItem("userProfile", JSON.stringify([]));
   }
 
   return (
