@@ -22,7 +22,6 @@ const UserServantList = ({region}) => {
     />
   ));
 
-
   const resetLocalStorage = () => {
     localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
   }
