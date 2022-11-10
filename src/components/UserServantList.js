@@ -22,19 +22,6 @@ const UserServantList = ({region}) => {
     />
   ));
 
-  const checkAll = () => {
-    let checkboxes = document.getElementsByName('include');
-    console.log(checkboxes);
-    for (let checkbox of checkboxes) {
-      if(checkbox.checked === true){
-        //change state: delete, save profile to localStorage
-        checkbox.checked = false;
-      }else{
-        //change state: add, save profile to localStorage
-        checkbox.checked = true;
-      }
-    }
-  }
 
   const resetLocalStorage = () => {
     localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
