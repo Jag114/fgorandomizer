@@ -2,18 +2,12 @@ import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 
-const UserServantList = ({region, userProfile, setUserProfile}) => {
+const UserServantList = ({region}) => {
   const navigate = useNavigate();
 
   const handlePath = () => {
     navigate("/");
   };
-
-  if(localStorage.getItem("userProfile") === null || localStorage.getItem("userProfile") === ""){
-    console.log("Weszlo");
-    const emptyArray = [];
-    localStorage.setItem("userProfile", JSON.stringify(emptyArray));
-  }
   
   const servantCardsData = JSON.parse(localStorage.getItem(`servantsData-${region}`));
 
@@ -24,8 +18,7 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
       name={e.name}
       className={e.className}
       rarity={e.rarity}
-      userProfile={userProfile}
-      setUserProfile={setUserProfile}
+      region={region}
     />
   ));
 
@@ -35,8 +28,6 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
     for (let checkbox of checkboxes) {
       if(checkbox.checked === true){
         //change state: delete, save profile to localStorage
-        let checkedServantCards = [];
-        checkedServantCards.push()
         checkbox.checked = false;
       }else{
         //change state: add, save profile to localStorage
@@ -46,8 +37,7 @@ const UserServantList = ({region, userProfile, setUserProfile}) => {
   }
 
   const resetLocalStorage = () => {
-    localStorage.setItem("userProfile", []);
-    setUserProfile([]);
+    localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
   }
 
   return (

@@ -7,23 +7,25 @@ import servantFetch from '../data/servantFetch';
   TODO:
     1. settings
       I*. choose cost
+      II. user profile filters, sorting
     2. appearance
       I. finish desktop viewport
-        D. fancy font*
+        A. fancy font*
+        B. user profile
       II. finish mobile viewport
         A. resizing
+        B. user profile
       III. favico
       IV. change button appearnce on hover/on click
-      V. user profile
-        A. keeps it in local storage
-        B. keep checkboxes un/checked between pages
+        A. filters
     3. funcionality
       I*. ce randomizer
+      II. separate userProfiles for regions so they dont create glitches
     4. bugs
       
     * - may not be in final version
 */
-const Party = ({formData, region, userProfile}) => {
+const Party = ({formData, region}) => {
   
   //default servant template
   const servant = {
@@ -32,6 +34,10 @@ const Party = ({formData, region, userProfile}) => {
     icon: "100100",  //arthuria
     className: "Class",
     rarity: 5,
+  }
+
+  if(!localStorage.getItem(`userProfile-${region}`)){
+    localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
   }
   
   const [ servantList, setServantList ] = useState([
@@ -48,17 +54,18 @@ const Party = ({formData, region, userProfile}) => {
     let arrID = []
     let breakNr = 0;
     let i;
-    //const unplayableID = [83, 149, 151, 152, 168, 240, 333]; not needed for now
     
+    const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`))];
+
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
     })
     let availableIDArr = data.data.map(e => { //ids from all servants currently available
       return e.collectionNo;
     })
-    if(userProfile.length > 0){
+    if(savedProfile.length > 0){
       availableIDArr = availableIDArr.filter(e => { //ids from all servants currently available - servants not included in users profile
-        return userProfile.includes(e);
+        return savedProfile.includes(e);
       })
     }
     let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
@@ -72,7 +79,7 @@ const Party = ({formData, region, userProfile}) => {
     console.log("usedIDArr: ", usedIDArr);
     console.log("avaiableIDArr: ", availableIDArr);
     console.log("filteredAvaialbleIDArr: ", filteredAvailableIDArr);
-    console.log("User profile: ", userProfile);
+    console.log("User profile: ", savedProfile);
 
     while(arrID.length < 5){
       if(breakNr > 1000) break;
