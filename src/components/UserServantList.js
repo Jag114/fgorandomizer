@@ -18,6 +18,7 @@ const UserServantList = ({region}) => {
       name={e.name}
       className={e.className}
       rarity={e.rarity}
+      region={region}
     />
   ));
 
@@ -27,8 +28,6 @@ const UserServantList = ({region}) => {
     for (let checkbox of checkboxes) {
       if(checkbox.checked === true){
         //change state: delete, save profile to localStorage
-        let checkedServantCards = [];
-        checkedServantCards.push()
         checkbox.checked = false;
       }else{
         //change state: add, save profile to localStorage
@@ -38,7 +37,7 @@ const UserServantList = ({region}) => {
   }
 
   const resetLocalStorage = () => {
-    localStorage.setItem("userProfile", JSON.stringify([]));
+    localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
   }
 
   return (

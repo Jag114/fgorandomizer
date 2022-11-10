@@ -35,6 +35,10 @@ const Party = ({formData, region}) => {
     className: "Class",
     rarity: 5,
   }
+
+  if(!localStorage.getItem(`userProfile-${region}`)){
+    localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
+  }
   
   const [ servantList, setServantList ] = useState([
     servant,servant,servant,servant,servant
@@ -50,10 +54,8 @@ const Party = ({formData, region}) => {
     let arrID = []
     let breakNr = 0;
     let i;
-    if(!localStorage.getItem("userProfile")){
-      localStorage.setItem("userProfile", JSON.stringify([]));
-    }
-    const savedProfile = [...JSON.parse(localStorage.getItem("userProfile"))];
+    
+    const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`))];
 
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;
