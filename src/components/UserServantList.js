@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 
-const UserServantList = ({region}) => {
+const UserServantList = ({region, forceState, setForceState}) => {
   const navigate = useNavigate();
 
   const handlePath = () => {
@@ -23,21 +23,22 @@ const UserServantList = ({region}) => {
   ));
 
   const checkAll = () => {
-    let checkboxes = document.getElementsByName('include');
-    console.log(checkboxes);
-    for (let checkbox of checkboxes) {
-      if(checkbox.checked === true){
-        //change state: delete, save profile to localStorage
-        checkbox.checked = false;
+    let cards = document.getElementsByClassName("profile-servant-net-card");
+    let profile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`))];
+    for (let card of cards) {
+      if(profile.includes(card.id)){
+        profile.splice(profile.indexOf(card.id), 1);
       }else{
-        //change state: add, save profile to localStorage
-        checkbox.checked = true;
+        profile.push(card.id);
       }
     }
+    localStorage.setItem(`userProfile-${region}`, JSON.stringify(profile));
+    setForceState(prevForceState => !prevForceState);
   }
 
   const resetLocalStorage = () => {
     localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
+    setForceState(prevForceState => !prevForceState);
   }
 
   return (
@@ -50,7 +51,7 @@ const UserServantList = ({region}) => {
       </div>
       <div className="profile-header-2">
         <label> Select all </label> 
-        <input type="checkbox" name="selectAll" onClick={checkAll}/>
+        <input type="checkbox" name="selectAll" onChange={checkAll}/>
         <br/>
         <button onClick={resetLocalStorage}> RESET PROFILE </button>
       </div>
