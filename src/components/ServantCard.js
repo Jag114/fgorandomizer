@@ -36,6 +36,7 @@ const ServantCard = (props) => {
       localStorage.setItem(`userProfile-${region}`,JSON.stringify(savedProfile));
       document.getElementById(props.id).style.backgroundColor = "green";
     }
+    props.setForceState(prevForceState => !prevForceState);
   };
   
   const profile = JSON.parse(localStorage.getItem(`userProfile-${region}`));

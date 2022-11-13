@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 
-const UserServantList = ({region, forceState, setForceState}) => {
+const UserServantList = ({region, setForceState}) => {
   const navigate = useNavigate();
 
   const handlePath = () => {
@@ -19,6 +19,7 @@ const UserServantList = ({region, forceState, setForceState}) => {
       className={e.className}
       rarity={e.rarity}
       region={region}
+      setForceState={setForceState}
     />
   ));
 
@@ -58,6 +59,7 @@ const UserServantList = ({region, forceState, setForceState}) => {
       <div className="profile-servant-net">
         {servantCards}
       </div>
+      
     </main>
   );
 };
