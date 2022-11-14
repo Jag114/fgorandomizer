@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
+import FilterList from "./UserServantListFilters"
+import useServantList from "../hooks/useServantList";
 
 const UserServantList = ({region, setForceState}) => {
+  const [ visible, setVisible ] = useServantList(false);
   const navigate = useNavigate();
 
   const handlePath = () => {
@@ -42,10 +45,16 @@ const UserServantList = ({region, setForceState}) => {
     setForceState(prevForceState => !prevForceState);
   }
 
+  const searchServant = (e) => {
+    console.log(e.target.value);
+  }
+
   return (
     <main>
+      {visible === true ? <FilterList visible={visible} setVisible={setVisible} /> : null}
       <div className="profile-header">
-        <p className="profile-header-text"> Your servant list, total number of servants is: {servantCards.length}, current region: {region.toUpperCase()} </p>
+        <p className="profile-header-text"> Total number of servants is: {servantCards.length}, current region: {region.toUpperCase()} </p>
+        <p className="profile-header-text"> Servants in your profile: {JSON.parse(localStorage.getItem(`userProfile-${region}`)).length} </p>
         <button className="profile-change-path-button" onClick={handlePath}>
           Go back to randomizer
         </button>
@@ -55,6 +64,8 @@ const UserServantList = ({region, setForceState}) => {
         <input type="checkbox" name="selectAll" onChange={checkAll}/>
         <br/>
         <button onClick={resetLocalStorage}> RESET PROFILE </button>
+        <input type="text" className="profile-search" onChange={searchServant}/>
+        <button className="profile-filter" onClick={() => setVisible(prevVisible => !prevVisible)}> Filter </button>
       </div>
       <div className="profile-servant-net">
         {servantCards}
