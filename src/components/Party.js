@@ -55,7 +55,7 @@ const Party = ({formData, region}) => {
     let breakNr = 0;
     let i;
     
-    const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`))];
+    const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`)).map(e => parseInt(e))];//ids are saved as strings
 
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;

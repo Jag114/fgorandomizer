@@ -21,7 +21,7 @@ const App = () => {
             <InfoFooter/>
           </>
         }/>
-        <Route path="profile" element={<UserServantList region={region} forceState={forceState} setForceState={setForceState} />}/>
+        <Route path="/profile" element={<UserServantList region={region} forceState={forceState} setForceState={setForceState} />}/>
       </Routes>
     </BrowserRouter>
   );

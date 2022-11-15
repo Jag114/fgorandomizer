@@ -2,11 +2,12 @@ import { useNavigate } from "react-router-dom";
 import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 import FilterList from "./UserServantListFilters"
-import useServantList from "../hooks/useServantList";
+import { createContext, useState } from "react";
 
 const UserServantList = ({region, setForceState}) => {
-  const [ visible, setVisible ] = useServantList(false);
+  const [ visible, setVisible ] = useState(false);
   const navigate = useNavigate();
+  const userContext = createContext();
 
   const handlePath = () => {
     navigate("/");
@@ -50,8 +51,13 @@ const UserServantList = ({region, setForceState}) => {
   }
 
   return (
-    <main>
-      {visible === true ? <FilterList visible={visible} setVisible={setVisible} /> : null}
+    <main style={{position:"relative"}}>
+      {visible === true ? 
+      <userContext.Provider value={region}>
+        <FilterList userContext={userContext} visible={visible} setVisible={setVisible} />
+      </userContext.Provider>
+       : 
+      null}
       <div className="profile-header">
         <p className="profile-header-text"> Total number of servants is: {servantCards.length}, current region: {region.toUpperCase()} </p>
         <p className="profile-header-text"> Servants in your profile: {JSON.parse(localStorage.getItem(`userProfile-${region}`)).length} </p>
