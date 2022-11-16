@@ -3,11 +3,13 @@ import "./UserServantList.css";
 import ServantCard from "./ServantCard";
 import FilterList from "./UserServantListFilters"
 import { createContext, useState } from "react";
+import useServantList from "../hooks/useServantList";
 
-const UserServantList = ({region, setForceState}) => {
+const UserServantList = ({region}) => {
   const [ visible, setVisible ] = useState(false);
   const navigate = useNavigate();
   const userContext = createContext();
+  const [ userProfile, setUserProfile ] = useServantList(region);
 
   const handlePath = () => {
     navigate("/");
@@ -23,7 +25,8 @@ const UserServantList = ({region, setForceState}) => {
       className={e.className}
       rarity={e.rarity}
       region={region}
-      setForceState={setForceState}
+      userProfile={userProfile}
+      setUserProfile={setUserProfile}
     />
   ));
 
@@ -37,13 +40,11 @@ const UserServantList = ({region, setForceState}) => {
         profile.push(card.id);
       }
     }
-    localStorage.setItem(`userProfile-${region}`, JSON.stringify(profile));
-    setForceState(prevForceState => !prevForceState);
+    setUserProfile(profile);
   }
 
-  const resetLocalStorage = () => {
-    localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
-    setForceState(prevForceState => !prevForceState);
+  const resetUserProfile = () => {
+    setUserProfile([]);
   }
 
   const searchServant = (e) => {
@@ -54,7 +55,7 @@ const UserServantList = ({region, setForceState}) => {
     <main style={{position:"relative"}}>
       {visible === true ? 
       <userContext.Provider value={region}>
-        <FilterList userContext={userContext} visible={visible} setVisible={setVisible} />
+        <FilterList userContext={userContext} visible={visible} setVisible={setVisible} region={region}/>
       </userContext.Provider>
        : 
       null}
@@ -69,7 +70,7 @@ const UserServantList = ({region, setForceState}) => {
         <label> Select all </label> 
         <input type="checkbox" name="selectAll" onChange={checkAll}/>
         <br/>
-        <button onClick={resetLocalStorage}> RESET PROFILE </button>
+        <button onClick={resetUserProfile}> RESET PROFILE </button>
         <input type="text" className="profile-search" onChange={searchServant}/>
         <button className="profile-filter" onClick={() => setVisible(prevVisible => !prevVisible)}> Filter </button>
       </div>

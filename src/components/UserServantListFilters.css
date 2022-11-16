@@ -5,7 +5,14 @@
     top: 80px;
     left: 10%;
     border: solid black 5px;
-    background-color: rgba(0, 0, 255, .5);
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 5%;
+}
+
+.user-profile-filter-list > div > h2{
+    background-color: goldenrod;
+    text-align: center;
+    border-radius: 5%;
 }
 
 .user-profile-filter-list-rarity {
@@ -15,8 +22,9 @@
 }
 
 .user-profile-filter-list-rarity > p {
-    border: solid red 2px;
+    background-color: goldenrod;
     text-align: center;
+    border-radius: 5%;
 }
 
 .user-profile-filter-list-class {
@@ -26,14 +34,16 @@
 }
 
 .user-profile-filter-list-class > p {
-    border: solid red 2px;
+    background-color: goldenrod;
     text-align: center;
+    border-radius: 5%;
 }
 
 .user-profile-filter-list-button {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     width: 40px;
     height: 40px;
+    background-color: silver;
 }

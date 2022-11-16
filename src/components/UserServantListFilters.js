@@ -1,41 +1,47 @@
 import { useContext } from 'react';
 import './UserServantListFilters.css'
 
+const FilterCard = (props) => {
+
+  const handleClick = () => {
+    console.log("Click");
+  }
+
+  return (
+    <p onClick={handleClick}> {props.data} </p>
+  )
+}
+
 const FilterList = ({ visible, setVisible, userContext }) => {
 
   const region = useContext(userContext);
+  const rarityList = [0,1,2,3,4,5];
+  const classList = [
+    "Saber", "Archer", "Lancer", 
+    "Berserker", "Caster", "Assassin", "Rider",
+    "Ruler", "Moon Cancer", "Avenger",
+    "Alter Ego", "Foreigner", "Shielder"
+  ]
+  if(region === "jp"){
+    classList.push("Pretender");
+  }
+
+  const classCards = classList.map(e => {
+    return <FilterCard key={e} data={e}/>
+  })
+  const rarityCards = rarityList.map((e,i) => {
+    return <FilterCard key={i} data={e}/>
+  })
 
   return visible === true ? (
     <div className="user-profile-filter-list">
       <div className='user-profile-filter-list-rarity'>
-        <p></p>
-        <p> Rarity </p>
-        <p></p>
-        <p> 0 </p>
-        <p> 1 </p>
-        <p> 2 </p>
-        <p> 3 </p>
-        <p> 4 </p>
-        <p> 5 </p>
+        <h2> Rarity </h2>
+        {rarityCards}
       </div>
       <div className='user-profile-filter-list-class'>
-        <p></p>
-        <p> Classes </p>
-        <p></p>
-        <p> Saber </p>
-        <p> Archer </p>
-        <p> Lancer </p>
-        <p> Berserker </p>
-        <p> Caster </p>
-        <p> Assassin </p>
-        <p> Rider </p>
-        <p> Ruler </p>
-        <p> Moon Cancer </p>
-        <p> Avenger </p>
-        <p> Alter Ego </p>
-        <p> Foreigner </p>
-        {region === "jp" ? <p> Pretender </p> : null}
-        <p> Shielder </p>
+        <h2> Classes </h2>
+        {classCards}
       </div>
       <button onClick={() => setVisible((prevVisible) => !prevVisible)} className='user-profile-filter-list-button'>
         X

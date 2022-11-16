@@ -22,7 +22,7 @@ import servantFetch from '../data/servantFetch';
       I*. ce randomizer
       II. separate userProfiles for regions so they dont create glitches
     4. bugs
-      
+      https://www.npmjs.com/package/npm-check-updates
     * - may not be in final version
 */
 const Party = ({formData, region}) => {

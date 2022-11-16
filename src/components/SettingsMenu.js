@@ -13,10 +13,11 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
   const handlePath = (e) => {
     e.preventDefault();
     if(!localStorage.getItem(`servantsData-${region}`)){
-      servantFetch({rarity: [], className: []}, region).then(() => navigate("profile"));
+      localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
+      servantFetch({rarity: [], className: []}, region).then(() => navigate("/profile"));
     }
     else{
-      navigate("profile");
+      navigate("/profile");
     }
   }
   
