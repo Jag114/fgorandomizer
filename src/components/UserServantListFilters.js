@@ -21,6 +21,7 @@ const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) =
       <FilterCard 
         key={e} 
         data={e}
+        id={e}
         filters={filters}
         setFilters={setFilters}
         type="class"
@@ -32,6 +33,7 @@ const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) =
       <FilterCard 
         key={i} 
         data={e}
+        id={i}
         filters={filters}
         setFilters={setFilters}
         type="rarity"

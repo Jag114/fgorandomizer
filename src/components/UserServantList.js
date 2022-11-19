@@ -100,7 +100,9 @@ const UserServantList = ({region}) => {
         <button className="profile-filter" onClick={() => setVisible(prevVisible => !prevVisible)}> Filter </button>
       </div>
       <div className="profile-servant-net">
-        {servantCards}
+        {servantCards} 
+        {/* check if there are servants to display if not show some div, changing how servantCards generation works
+        may be needed */}
       </div>
       
     </main>

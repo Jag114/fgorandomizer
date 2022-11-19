@@ -1,14 +1,13 @@
 import "./FilterCard.css";
 
-let clicked = false;
-
 const FilterCard = (props) => {
   const { filters, setFilters } = props;
   const type = props.type;
   let classArr = [...filters.class];  
   let rarityArr = [...filters.rarity];  
+  let style = {};
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     if (type === "rarity") {
       if (filters.rarity.includes(props.data)) {
         rarityArr.splice(rarityArr.indexOf(props.data), 1);
@@ -42,10 +41,15 @@ const FilterCard = (props) => {
             });
           }
     }
-    clicked = clicked ? false : true;
   };
-  //change <p> to <div> or <button> and add bgColor change on clicked
-  return <p style={clicked ? {backgroundColor:"blue"} : {}} onClick={handleClick}> {props.data} </p>;
+
+  if(filters.rarity.includes(props.data) || filters.class.includes(props.data)){
+    style = {backgroundColor:"goldenrod"};
+  }else{
+    style = {backgroundColor:"grey"};
+  }
+
+  return <div style={style} id={props.id} onClick={handleClick}> {props.data} </div>;
 };
 
 export default FilterCard;
