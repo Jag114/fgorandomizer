@@ -38,6 +38,10 @@ const ServantCard = (props) => {
     style = { backgroundColor: "red" };
   }
 
+  if(props.show1 === false || props.show2 === false){
+    style = { display: "none"};
+  }
+
   return (
     <div
       onClick={() => handleChange(props.id)}

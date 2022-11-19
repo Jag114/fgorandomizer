@@ -10,7 +10,10 @@ const UserServantList = ({region}) => {
   const navigate = useNavigate();
   const userContext = createContext();
   const [ userProfile, setUserProfile ] = useServantList(region);
-
+  const [ filters, setFilters ] = useState({
+    rarity: [],
+    class: []
+  });
   const handlePath = () => {
     navigate("/");
   };
@@ -27,6 +30,21 @@ const UserServantList = ({region}) => {
       region={region}
       userProfile={userProfile}
       setUserProfile={setUserProfile}
+      show1={filters.rarity.length > 0 ? filters.rarity.includes(e.rarity) ? true : false : true} 
+      show2={filters.class.length > 0 ? filters.class.includes(e.className[0].toUpperCase() + e.className.substring(1)) ? true : false : true} 
+      /*  show1:
+          if(filters.rarity.length > 0){
+            if(filter.rarity.includes(e.rarity)){
+              return true
+            }else{
+              return false
+            }
+          }else{
+          }
+          show2: 
+          the same, e.className[0].toUpperCase() + e.className.substring(1), needed cuz of
+          difference between e.g Saber and saber
+      */
     />
   ));
 
@@ -55,7 +73,14 @@ const UserServantList = ({region}) => {
     <main style={{position:"relative"}}>
       {visible === true ? 
       <userContext.Provider value={region}>
-        <FilterList userContext={userContext} visible={visible} setVisible={setVisible} region={region}/>
+        <FilterList 
+          userContext={userContext} 
+          visible={visible} 
+          setVisible={setVisible} 
+          region={region}
+          filters={filters}
+          setFilters={setFilters}
+        />
       </userContext.Provider>
        : 
       null}

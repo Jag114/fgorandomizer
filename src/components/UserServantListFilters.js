@@ -1,18 +1,8 @@
 import { useContext } from 'react';
+import FilterCard from './FilterCard';
 import './UserServantListFilters.css'
 
-const FilterCard = (props) => {
-
-  const handleClick = () => {
-    console.log("Click");
-  }
-
-  return (
-    <p onClick={handleClick}> {props.data} </p>
-  )
-}
-
-const FilterList = ({ visible, setVisible, userContext }) => {
+const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) => {
 
   const region = useContext(userContext);
   const rarityList = [0,1,2,3,4,5];
@@ -25,12 +15,28 @@ const FilterList = ({ visible, setVisible, userContext }) => {
   if(region === "jp"){
     classList.push("Pretender");
   }
-
+  console.log(filters);
   const classCards = classList.map(e => {
-    return <FilterCard key={e} data={e}/>
+    return (
+      <FilterCard 
+        key={e} 
+        data={e}
+        filters={filters}
+        setFilters={setFilters}
+        type="class"
+      />
+    )
   })
   const rarityCards = rarityList.map((e,i) => {
-    return <FilterCard key={i} data={e}/>
+    return (
+      <FilterCard 
+        key={i} 
+        data={e}
+        filters={filters}
+        setFilters={setFilters}
+        type="rarity"
+      />
+    )
   })
 
   return visible === true ? (
