@@ -22,7 +22,7 @@ import servantFetch from '../data/servantFetch';
       I*. ce randomizer
       II. separate userProfiles for regions so they dont create glitches
     4. bugs
-      
+      https://www.npmjs.com/package/npm-check-updates
     * - may not be in final version
 */
 const Party = ({formData, region}) => {
@@ -55,7 +55,7 @@ const Party = ({formData, region}) => {
     let breakNr = 0;
     let i;
     
-    const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`)).map(e => parseInt(e))];
+    const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`)).map(e => parseInt(e))];//ids are saved as strings
 
     const usedIDArr = servantList.map(s => { //ids used in party on screen
       return s.id;

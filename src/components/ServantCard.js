@@ -1,7 +1,7 @@
 import "./UserServantList.css";
 
 const ServantCard = (props) => {
-  const { region } = props;
+  const { region, userProfile, setUserProfile } = props;
 
   const capitalizedClassName = (string) => {
     return string[0].toUpperCase() + string.substring(1);
@@ -20,23 +20,14 @@ const ServantCard = (props) => {
   };
 
   const handleChange = (id) => {
-    if (localStorage.getItem(`userProfile-${region}`) === false) {  //check if exists, if not create
-      localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
-    }
-    const savedProfile = [
-      ...JSON.parse(localStorage.getItem(`userProfile-${region}`)),
-    ];
+    const savedProfile = [...userProfile];
 
     if (savedProfile.includes(`${id}`)) {
       savedProfile.splice(savedProfile.indexOf(`${id}`), 1);
-      localStorage.setItem(`userProfile-${region}`,JSON.stringify(savedProfile));
-      document.getElementById(props.id).style.backgroundColor = "red";
     } else {
       savedProfile.push(`${id}`);
-      localStorage.setItem(`userProfile-${region}`,JSON.stringify(savedProfile));
-      document.getElementById(props.id).style.backgroundColor = "green";
     }
-    props.setForceState(prevForceState => !prevForceState);
+    setUserProfile(savedProfile);
   };
   
   const profile = JSON.parse(localStorage.getItem(`userProfile-${region}`));
@@ -45,6 +36,10 @@ const ServantCard = (props) => {
     style = { backgroundColor: "green" };
   } else {
     style = { backgroundColor: "red" };
+  }
+
+  if(props.show1 === false || props.show2 === false){
+    style = { display: "none"};
   }
 
   return (

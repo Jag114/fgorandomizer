@@ -4,12 +4,10 @@ import SettingsMenu from './components/SettingsMenu';
 import useSettings from './hooks/useSettings';
 import UserServantList from './components/UserServantList';
 import InfoFooter from "./components/InfoFooter";
-import { useState } from "react";
 
 const App = () => {
 
   const [formData, setFormData, region, setRegion ] = useSettings()
-  const [ forceState, setForceState ] = useState(false);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -21,7 +19,7 @@ const App = () => {
             <InfoFooter/>
           </>
         }/>
-        <Route path="profile" element={<UserServantList region={region} forceState={forceState} setForceState={setForceState} />}/>
+        <Route path="/profile" element={<UserServantList region={region} />}/>
       </Routes>
     </BrowserRouter>
 
