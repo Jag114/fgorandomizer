@@ -14,6 +14,7 @@ const UserServantList = ({region}) => {
     rarity: [],
     class: []
   });
+  const [ query, setQuery ] = useState("");
   const handlePath = () => {
     navigate("/");
   };
@@ -48,6 +49,10 @@ const UserServantList = ({region}) => {
     />
   ));
 
+  const servantCardsFiltered = servantCards.filter(s => {
+    return s.props.name.toLowerCase().includes(query.toLowerCase())
+  })
+
   const checkAll = () => {
     let cards = document.getElementsByClassName("profile-servant-net-card");
     let profile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`))];
@@ -63,10 +68,6 @@ const UserServantList = ({region}) => {
 
   const resetUserProfile = () => {
     setUserProfile([]);
-  }
-
-  const searchServant = (e) => {
-    console.log(e.target.value);
   }
 
   return (
@@ -96,11 +97,11 @@ const UserServantList = ({region}) => {
         <input type="checkbox" name="selectAll" onChange={checkAll}/>
         <br/>
         <button onClick={resetUserProfile}> RESET PROFILE </button>
-        <input type="text" className="profile-search" onChange={searchServant}/>
+        <input type="text" className="profile-search" placeholder="e.g. Nero" value={query} onChange={e => setQuery(e.target.value)}/>
         <button className="profile-filter" onClick={() => setVisible(prevVisible => !prevVisible)}> Filter </button>
       </div>
       <div className="profile-servant-net">
-        {servantCards} 
+        {servantCardsFiltered} 
         {/* check if there are servants to display if not show some div, changing how servantCards generation works
         may be needed */}
       </div>

@@ -49,7 +49,21 @@ const FilterCard = (props) => {
     style = {backgroundColor:"grey"};
   }
 
-  return <div style={style} id={props.id} onClick={handleClick}> {props.data} </div>;
+  const rarityIcon = (length) => {
+    if (length === 0) {
+      return 0;
+    }
+    let stars = "";
+    while (length > 0) {
+      stars += "⋆";
+      length--;
+    }
+    return stars;
+  };
+
+  const value = type === "rarity" ? rarityIcon(props.data) : props.data;
+
+  return <div className="filter-card" style={style} id={props.id} onClick={handleClick}> {value} </div>;
 };
 
 export default FilterCard;

@@ -44,11 +44,15 @@ const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) =
   return visible === true ? (
     <div className="user-profile-filter-list">
       <div className='user-profile-filter-list-rarity'>
+        <p></p>
         <h2> Rarity </h2>
+        <p></p>
         {rarityCards}
       </div>
       <div className='user-profile-filter-list-class'>
+        <p></p>
         <h2> Classes </h2>
+        <p></p>
         {classCards}
       </div>
       <button onClick={() => setVisible((prevVisible) => !prevVisible)} className='user-profile-filter-list-button'>
