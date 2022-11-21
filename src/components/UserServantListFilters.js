@@ -9,8 +9,8 @@ const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) =
   const classList = [
     "Saber", "Archer", "Lancer", 
     "Berserker", "Caster", "Assassin", "Rider",
-    "Ruler", "Moon Cancer", "Avenger",
-    "Alter Ego", "Foreigner", "Shielder"
+    "Ruler", "MoonCancer", "Avenger",
+    "AlterEgo", "Foreigner", "Shielder"
   ]
   if(region === "jp"){
     classList.push("Pretender");
