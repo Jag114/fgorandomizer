@@ -7,6 +7,7 @@ import useServantList from "../hooks/useServantList";
 
 const UserServantList = ({region}) => {
   const [ visible, setVisible ] = useState(false);
+  //delete ^
   const navigate = useNavigate();
   const userContext = createContext();
   const [ userProfile, setUserProfile ] = useServantList(region);
@@ -21,8 +22,12 @@ const UserServantList = ({region}) => {
   
   const servantCardsData = JSON.parse(localStorage.getItem(`servantsData-${region}`));
 
-  const servantCards = servantCardsData.map((e) => (
-    <ServantCard
+  const servantCards = servantCardsData.map((e) => {
+    let doShow = true;
+    if(!filters.rarity.includes(e.rarity) || !filters.class.includes(e.className)){
+      doShow = false;
+    }
+    return (<ServantCard
       key={e.collectionNo}
       id={e.collectionNo}
       name={e.name}
@@ -46,8 +51,8 @@ const UserServantList = ({region}) => {
           the same, e.className[0].toUpperCase() + e.className.substring(1), needed cuz of
           difference between e.g Saber and saber
       */
-    />
-  ));
+    />);
+  });
 
   const servantCardsFiltered = servantCards.filter(s => {
     return s.props.name.toLowerCase().includes(query.toLowerCase())
@@ -69,6 +74,8 @@ const UserServantList = ({region}) => {
   const resetUserProfile = () => {
     setUserProfile([]);
   }
+
+  console.log(servantCards)
 
   return (
     <main style={{position:"relative"}}>
@@ -101,6 +108,7 @@ const UserServantList = ({region}) => {
         <button className="profile-filter" onClick={() => setVisible(prevVisible => !prevVisible)}> Filter </button>
       </div>
       <div className="profile-servant-net">
+        {servantCardsFiltered.length}
         {servantCardsFiltered} 
         {/* check if there are servants to display if not show some div, changing how servantCards generation works
         may be needed */}
