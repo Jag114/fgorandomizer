@@ -15,7 +15,7 @@ const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) =
   if(region === "jp"){
     classList.push("Pretender");
   }
-  console.log(filters);
+
   const classCards = classList.map(e => {
     return (
       <FilterCard 

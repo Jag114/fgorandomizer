@@ -7,7 +7,6 @@ import servantFetch from '../data/servantFetch';
   TODO:
     1. settings
       I*. choose cost
-      II. user profile filters, sorting
     2. appearance
       I. finish desktop viewport
         A. fancy font*
@@ -20,9 +19,8 @@ import servantFetch from '../data/servantFetch';
         A. filters
     3. funcionality
       I*. ce randomizer
-      II. separate userProfiles for regions so they dont create glitches
     4. bugs
-      https://www.npmjs.com/package/npm-check-updates
+
     * - may not be in final version
 */
 const Party = ({formData, region}) => {
@@ -71,15 +69,6 @@ const Party = ({formData, region}) => {
     let filteredAvailableIDArr = availableIDArr.filter(id => { //ids from all servants currently available and in users profile - ids used in party on screen
       return usedIDArr.indexOf(id) === -1;
     })
-
-    if(filteredAvailableIDArr.length === 0){
-      alert("All available servants are on the screen right now, can't randomize.")
-    }
-
-    console.log("usedIDArr: ", usedIDArr);
-    console.log("avaiableIDArr: ", availableIDArr);
-    console.log("filteredAvaialbleIDArr: ", filteredAvailableIDArr);
-    console.log("User profile: ", savedProfile);
 
     while(arrID.length < 5){
       if(breakNr > 1000) break;

@@ -22,11 +22,7 @@ const UserServantList = ({region}) => {
   
   const servantCardsData = JSON.parse(localStorage.getItem(`servantsData-${region}`));
 
-  const servantCards = servantCardsData.map((e) => {
-    let doShow = true;
-    if(!filters.rarity.includes(e.rarity) || !filters.class.includes(e.className)){
-      doShow = false;
-    }
+  let servantCards = servantCardsData.map((e) => {  
     return (<ServantCard
       key={e.collectionNo}
       id={e.collectionNo}
@@ -54,7 +50,23 @@ const UserServantList = ({region}) => {
     />);
   });
 
-  const servantCardsFiltered = servantCards.filter(s => {
+  servantCards = servantCards.filter(e => {
+    let doShow = true;
+    if(filters.rarity.length > 0){
+      if(filters.rarity.includes(e.props.rarity) === false){
+        doShow = false;
+      }
+    }
+    if(filters.class.length > 0){
+      if(filters.rarity.includes(e.props.className) === false){
+        doShow = false;
+      }
+    }
+
+    return doShow ? e : null;
+  })
+
+  const servantCardsCapitalized = servantCards.filter(s => {
     return s.props.name.toLowerCase().includes(query.toLowerCase())
   })
 
@@ -75,8 +87,6 @@ const UserServantList = ({region}) => {
     setUserProfile([]);
   }
 
-  console.log(servantCards)
-
   return (
     <main style={{position:"relative"}}>
       {visible === true ? 
@@ -93,7 +103,7 @@ const UserServantList = ({region}) => {
        : 
       null}
       <div className="profile-header">
-        <p className="profile-header-text"> Total number of servants is: {servantCards.length}, current region: {region.toUpperCase()} </p>
+        <p className="profile-header-text"> Total number of servants is: {JSON.parse(localStorage.getItem(`servantsData-${region}`)).length}, current region: {region.toUpperCase()} </p>
         <p className="profile-header-text"> Servants in your profile: {JSON.parse(localStorage.getItem(`userProfile-${region}`)).length} </p>
         <button className="profile-change-path-button" onClick={handlePath}>
           Go back to randomizer
@@ -108,8 +118,8 @@ const UserServantList = ({region}) => {
         <button className="profile-filter" onClick={() => setVisible(prevVisible => !prevVisible)}> Filter </button>
       </div>
       <div className="profile-servant-net">
-        {servantCardsFiltered.length}
-        {servantCardsFiltered} 
+        {servantCards.length > 0 ? servantCardsCapitalized : 
+        <div className="profile-servant-net-empty"> Sorry, couldn't find any servants, check your filters and try again :-)</div>} 
         {/* check if there are servants to display if not show some div, changing how servantCards generation works
         may be needed */}
       </div>

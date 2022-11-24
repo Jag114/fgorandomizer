@@ -48,3 +48,11 @@ body{
     font-weight: bold;
     font-size: 1rem;
 }
+
+.profile-servant-net-empty{
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 2rem;
+    border-radius: 5%;
+    background-color: aquamarine;
+}
