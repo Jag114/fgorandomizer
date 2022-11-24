@@ -38,11 +38,12 @@ const ServantCard = (props) => {
     style = { backgroundColor: "red" };
   }
 
+  let doShow = true;
   if(props.show1 === false || props.show2 === false){
-    style = { display: "none"};
+    doShow = false;
   }
 
-  return (
+  return (doShow === true) ? (
     <div
       onClick={() => handleChange(props.id)}
       id={props.id}
@@ -54,7 +55,7 @@ const ServantCard = (props) => {
       <p> {capitalizedClassName(props.className)} </p>
       <p> {rarityIcon(props.rarity)} </p>
     </div>
-  );
+  ) : null;
 };
 
 export default ServantCard;
