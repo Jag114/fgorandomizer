@@ -5,8 +5,10 @@ import React from "react";
 
 let rarityArr = [];
 let classArr = [];
+let rarityAllChecked = false;
+let classAllChecked = false;
 
-const SettingsMenu = ({setFormData, region, setRegion}) => {
+const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
   let renderCounter = 0; //for strict mode
 
   const navigate = useNavigate();
@@ -97,14 +99,26 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
   const checkAll = (type) => {
     let checkboxes = document.getElementsByName(type);
     for (let checkbox of checkboxes) {
-      if(checkbox.checked === true){
-        type === "rarity" ? rarityArr = [] : classArr = [];
+      if(rarityAllChecked === true || classAllChecked === true){
         checkbox.checked = false;
+        type === "rarity" ? 
+          rarityArr.splice(rarityArr.indexOf(checkbox.value), 1) : 
+          classArr.splice(classArr.indexOf(checkbox.value), 1);
       }else{
-        type === "rarity" ? rarityArr.push(parseInt(checkbox.value)) : classArr.push(checkbox.value);
         checkbox.checked = true;
+          type === "rarity" ? 
+            rarityArr.push(parseInt(checkbox.value)) : 
+            classArr.push(checkbox.value);
       }
     }
+    rarityArr = checkDuplicates(rarityArr);
+    classArr = checkDuplicates(classArr);
+    if(type === "rarity"){
+      rarityAllChecked = !rarityAllChecked;
+    }else{
+      classAllChecked = !classAllChecked;
+    }
+    setFormData({rarity: [...rarityArr], className: [...classArr]});
   }
 
     return (
@@ -115,7 +129,7 @@ const SettingsMenu = ({setFormData, region, setRegion}) => {
           <span className="slider round"></span>
         </label>
           <div className="settings-rarity">
-            <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="rarity" value="0"/>
+            <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="rarity" value="0" />
             <label>0</label>
             <input type="checkbox" className="settings-checkbox" onChange={handleChange} name="rarity" value="1"/>
             <label className="star-label">⋆</label>
