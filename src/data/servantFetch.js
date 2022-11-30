@@ -18,7 +18,7 @@ async function fetchServant(settings, region) {
   let modifiedData = [];
   let isTrue;
   const unplayableID = [83, 149, 151, 152, 168, 240, 333];
-
+  
   if(localStorage.getItem(`servantsData-${region}`) && JSON.parse(localStorage.getItem(`servantsData-${region}`)).length > 0){
     data = JSON.parse(localStorage.getItem(`servantsData-${region}`));
     console.log("Memory", data);

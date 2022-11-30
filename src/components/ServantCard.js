@@ -1,23 +1,9 @@
 import "./UserServantList.css";
+import rarityStarConverter from "../data/rarityStarConverter";
+import capitalizeString from "../data/capitalizeString";
 
 const ServantCard = (props) => {
   const { region, userProfile, setUserProfile } = props;
-
-  const capitalizedClassName = (string) => {
-    return string[0].toUpperCase() + string.substring(1);
-  };
-
-  const rarityIcon = (length) => {
-    if (length === 0) {
-      return 0;
-    }
-    let stars = "";
-    while (length > 0) {
-      stars += "⋆";
-      length--;
-    }
-    return stars;
-  };
 
   const handleChange = (id) => {
     const savedProfile = [...userProfile];
@@ -52,8 +38,8 @@ const ServantCard = (props) => {
     >
       <p> {"<--Press to include-->"} </p>
       <p> {props.name} </p>
-      <p> {capitalizedClassName(props.className)} </p>
-      <p> {rarityIcon(props.rarity)} </p>
+      <p> {capitalizeString(props.className)} </p>
+      <p> {rarityStarConverter(props.rarity)} </p>
     </div>
   ) : null;
 };
