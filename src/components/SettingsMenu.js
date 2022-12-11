@@ -3,6 +3,7 @@ import servantFetch from '../data/servantFetch';
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import FilterMenu from "./FilterMenu";
+import checkDuplicates from "../data/checkDuplicatesInArr";
 
 let rarityArr = [];
 let classArr = [];
@@ -68,20 +69,6 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
     }
   }
 
-  function checkDuplicates (arr) {
-    let valuesSoFar = {};
-    let value;
-    let uniqueArr = [];
-    for (let i = 0; i < arr.length; i++) {
-      value = arr[i];
-      if(!(value in valuesSoFar)) {
-        valuesSoFar[value] = true;
-        uniqueArr.push(value);
-      }
-    }
-    return uniqueArr;
-  }
-
   const reFetchData = (e) => {
     e.preventDefault();
     localStorage.setItem(`servantsData-${region}`, JSON.stringify([]))
@@ -124,6 +111,10 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
 
     return (
       <div className="settings-menu">
+         <label className="switch">
+          <input type="checkbox" onChange={changeServerData} checked={region === "na" ? false : true}/>
+          <span className="slider round"></span>
+        </label>
           <label> Select all classes</label>
           <input type="checkbox" onChange={() => checkAll("class")}/>
           <label> Select all rarities</label>
@@ -131,13 +122,7 @@ const SettingsMenu = ({formData, setFormData, region, setRegion}) => {
           <br/>
           <button className="settings-button" onClick={handlePath}> Go to profile </button>
           <button className="settings-button" onClick={reFetchData}> Re-fetch data </button>
-         <FilterMenu region={region}/>
-        <form>
-        <label className="switch">
-          <input type="checkbox" onChange={changeServerData} checked={region === "na" ? false : true}/>
-          <span className="slider round"></span>
-        </label>
-        </form>
+         <FilterMenu region={region} setFormData={setFormData} formData={formData}/>
       </div>
     )
 };

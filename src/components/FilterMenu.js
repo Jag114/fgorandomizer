@@ -1,21 +1,69 @@
 import "./FilterMenu.css";
 import rarityStarConverter from "../data/rarityStarConverter";
+import checkDuplicates from "../data/checkDuplicatesInArr";
+import removeSpaceFromString from "../data/removeSpacesFromString";
+import capitalizeString from "../data/capitalizeString";
 
-const FilterMenu = ({ region }) => {
+let rarityArr = [];
+let classArr = [];
+
+const FilterMenu = ({ region, formData, setFormData }) => {
+
+  let renderCounter = 0; //for strict mode
+  const handleClick = (event) => {
+    let { name, value } = event.target;
+    value = removeSpaceFromString(value);
+    switch (name) {
+      case "rarity":
+        setFormData(prevFormData => {
+            if(!prevFormData.rarity.includes(parseInt(value))){
+              rarityArr.push(parseInt(value));
+            }
+            else{
+              if(renderCounter === 0){ //for strict mode
+                rarityArr.splice(rarityArr.indexOf(parseInt(value)), 1);
+                renderCounter++;
+              }
+            } 
+          rarityArr = [...checkDuplicates(rarityArr)];
+          return {rarity: [...rarityArr], className: [...prevFormData.className]};
+        })
+        break;
+        
+      case "class":
+        setFormData(prevFormData => {
+          if(!prevFormData.className.includes(value)){
+            classArr.push(value);
+          }
+          else{
+            if(renderCounter === 0){ //for strict mode
+              classArr.splice(classArr.indexOf(value), 1);
+              renderCounter++;
+            }
+          } 
+        classArr = [...checkDuplicates(classArr)];
+        return {className: [...classArr], rarity: [...prevFormData.rarity]};
+      })
+        break;
+      default:
+        break;
+    }
+  }
+  console.log(formData);
   let classList = [
-    "Saber",
-    "Archer",
-    "Lancer",
-    "Rider",
-    "Assassin",
-    "Caster",
-    "Berserker",
-    "Ruler",
-    "Avenger",
-    "MoonCancer",
-    "Foreigner",
-    "Shielder",
-    "AlterEgo",
+    "saber",
+    "archer",
+    "lancer",
+    "rider",
+    "assassin",
+    "caster",
+    "berserker",
+    "ruler",
+    "avenger",
+    "moon Cancer",
+    "foreigner",
+    "shielder",
+    "alter Ego",
   ];
   if (region === "jp") {
     classList.push("Pretender");
@@ -23,12 +71,35 @@ const FilterMenu = ({ region }) => {
   const rarityList = [0, 1, 2, 3, 4, 5];
 
   const rarityFilters = rarityList.map((e) => {
-    return <div className="filter-menu-rarity"> {rarityStarConverter(e)} </div>;
+    return (
+      <button 
+        key={e} 
+        className="filter-menu-rarity"
+        onClick={handleClick} 
+        value={e} 
+        name="rarity"> 
+        {rarityStarConverter(e)} 
+      </button>
+    ) 
+          
   });
 
-  const classFilters = classList.map((e) => {
-    return <div className="filter-menu-class"> {e} </div>;
+  const classFilters = classList.map((e,i) => {
+    return (
+      <button 
+        key={i} 
+        className="filter-menu-class" 
+        onClick={handleClick} 
+        value={e} 
+        name="class"> 
+        {capitalizeString(e)} 
+      </button>
+    )
   });
+
+  const hideMenu = () => {
+    console.log("Hidden");
+  }
 
   return (
     <div className="filter-menu-container">
@@ -42,10 +113,10 @@ const FilterMenu = ({ region }) => {
         {classFilters}
       </div>
       <div className="filter-menu-button-container">
-        <button className="filter-menu-button"> Default </button>
+        <button className="filter-menu-button" onClick={() => setFormData({rarity:[], className:[]})}> Default </button>
         <button className="filter-menu-button"> Select All (Rarity) </button>
         <button className="filter-menu-button"> Select All (Class) </button>
-        <button className="filter-menu-button"> OK </button>
+        <button className="filter-menu-button" onClick={hideMenu}> OK </button>
       </div>
     </div>
   );
