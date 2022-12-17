@@ -4,11 +4,10 @@ import checkDuplicates from "../data/checkDuplicatesInArr";
 import removeSpaceFromString from "../data/removeSpacesFromString";
 import capitalizeString from "../data/capitalizeString";
 
-let rarityArr = [];
-let classArr = [];
+const FilterMenu = ({ region, formData, setFormData, setShowMenu }) => {
 
-const FilterMenu = ({ region, formData, setFormData }) => {
-
+  let rarityArr = [...formData.rarity];
+  let classArr = [...formData.className];
   let renderCounter = 0; //for strict mode
   const handleClick = (event) => {
     let { name, value } = event.target;
@@ -73,6 +72,7 @@ const FilterMenu = ({ region, formData, setFormData }) => {
   const rarityFilters = rarityList.map((e) => {
     return (
       <button 
+        style={{backgroundColor: formData.rarity.includes(e) ? "white" : "rgb(63, 109, 194)"}}
         key={e} 
         className="filter-menu-rarity"
         onClick={handleClick} 
@@ -87,6 +87,7 @@ const FilterMenu = ({ region, formData, setFormData }) => {
   const classFilters = classList.map((e,i) => {
     return (
       <button 
+        style={{backgroundColor: formData.className.includes(removeSpaceFromString(e)) ? "white" : "rgb(63, 109, 194)"}}
         key={i} 
         className="filter-menu-class" 
         onClick={handleClick} 
@@ -98,11 +99,22 @@ const FilterMenu = ({ region, formData, setFormData }) => {
   });
 
   const hideMenu = () => {
-    console.log("Hidden");
+    setShowMenu(prevShowMenu => !prevShowMenu)
+  }
+
+  const selectAllRarity = () => {
+    console.log("Select All Rarity");
+    setFormData(prevFormData => ({rarity: [...rarityList], className: [...prevFormData.className]}))
+  }
+
+  const selectAllClass = () => {
+    console.log("Select All Class");
+    let classListNoSpaces = classList.map(e => removeSpaceFromString(e))
+    setFormData(prevFormData => ({rarity: [...prevFormData.rarity], className: [...classListNoSpaces]}))
   }
 
   return (
-    <div className="filter-menu-container">
+      <div className="filter-menu-container" id="filter-menu-container">
       <div className="filter-menu-rarity-list">
         <h1> Rarity </h1>
         {rarityFilters}
@@ -114,11 +126,11 @@ const FilterMenu = ({ region, formData, setFormData }) => {
       </div>
       <div className="filter-menu-button-container">
         <button className="filter-menu-button" onClick={() => setFormData({rarity:[], className:[]})}> Default </button>
-        <button className="filter-menu-button"> Select All (Rarity) </button>
-        <button className="filter-menu-button"> Select All (Class) </button>
+        <button className="filter-menu-button" onClick={selectAllRarity}> Select All (Rarity) </button>
+        <button className="filter-menu-button" onClick={selectAllClass}> Select All (Class) </button>
         <button className="filter-menu-button" onClick={hideMenu}> OK </button>
       </div>
-    </div>
+    </div> 
   );
 };
 
