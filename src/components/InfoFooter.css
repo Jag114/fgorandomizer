@@ -4,5 +4,6 @@ footer{
     text-align: center;
     width: 100%;
     position: absolute;
-    margin-top: 33rem;
+    margin-top: 35%;
+    z-index: -1;
 }

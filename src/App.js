@@ -18,7 +18,7 @@ const App = () => {
             <SettingsMenu formData={formData} setFormData={setFormData} region={region} setRegion={setRegion} />
             <InfoFooter/>
           </>
-        }/>
+        }/> 
         <Route path="/profile" element={<UserServantList region={region} />}/>
       </Routes>
     </BrowserRouter>
