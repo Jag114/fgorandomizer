@@ -47,8 +47,8 @@ const FilterMenu = ({ region, formData, setFormData, setShowMenu }) => {
       default:
         break;
     }
-  }
-  console.log(formData);
+  } 
+
   let classList = [
     "saber",
     "archer",
@@ -80,21 +80,24 @@ const FilterMenu = ({ region, formData, setFormData, setShowMenu }) => {
         name="rarity"> 
         {rarityStarConverter(e)} 
       </button>
-    ) 
-          
+    )       
   });
 
   const classFilters = classList.map((e,i) => {
     const img = require(`../icons/${removeSpaceFromString(e)}_icon.png`);
     const backgroundColor = formData.className.includes(removeSpaceFromString(e)) ? "white" : "rgb(63, 109, 194)";
-    const styleSheet = window.innerWidth <= 700 
+    const styleSheet = window.innerWidth < 701
     ? {
-      background: `url(${img}), ${backgroundColor}`, 
+      backgroundImage: `url(${img})`, 
+      backgroundColor: `${backgroundColor}`,
       backgroundSize: "2rem 2rem",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center"
     }
-    : {backgroundColor: backgroundColor}
+    : {
+      backgroundColor: backgroundColor, 
+      backgroundImage: "none",
+    }
     return (
       <button 
         style={styleSheet}
