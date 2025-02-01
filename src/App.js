@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Party from './components/Party';
 import SettingsMenu from './components/SettingsMenu';
-import useSettings from './hooks/useSettings';
 import UserServantList from './components/UserServantList';
 import InfoFooter from "./components/InfoFooter";
+
+import useSettings from './hooks/useSettings';
 
 const App = () => {
 

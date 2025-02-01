@@ -58,11 +58,10 @@ const UserServantList = ({region}) => {
       }
     }
     if(filters.class.length > 0){
-      if(filters.rarity.includes(e.props.className) === false){
+      if(filters.class.includes(e.props.className) === false){
         doShow = false;
       }
     }
-
     return doShow ? e : null;
   })
 

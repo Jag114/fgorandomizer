@@ -21,7 +21,7 @@ const ServantCard = (props) => {
   if (profile.includes(`${props.id}`)) {
     style = { backgroundColor: "green" };
   } else {
-    style = { backgroundColor: "red" };
+    style = { backgroundColor: "gray" };
   }
 
   let doShow = true;

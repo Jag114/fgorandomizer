@@ -10,10 +10,10 @@ const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) =
     "Saber", "Archer", "Lancer", 
     "Berserker", "Caster", "Assassin", "Rider",
     "Ruler", "MoonCancer", "Avenger",
-    "AlterEgo", "Foreigner", "Shielder"
+    "AlterEgo", "Foreigner", "Shielder", "Pretender"
   ]
   if(region === "jp"){
-    classList.push("Pretender");
+    classList.push("beast");
   }
 
   const classCards = classList.map(e => {

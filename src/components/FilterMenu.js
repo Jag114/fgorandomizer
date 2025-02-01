@@ -63,9 +63,10 @@ const FilterMenu = ({ region, formData, setFormData, setShowMenu }) => {
     "foreigner",
     "shielder",
     "alter Ego",
+    "pretender"
   ];
   if (region === "jp") {
-    classList.push("Pretender");
+    classList.push("beast");
   }
   const rarityList = [0, 1, 2, 3, 4, 5];
 
