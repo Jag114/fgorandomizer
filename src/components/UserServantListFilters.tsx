@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import FilterCard from './FilterCard';
-import './UserServantListFilters.css'
+import '../styles/UserServantListFilters.css'
 
 const FilterList = ({ visible, setVisible, userContext, filters, setFilters }) => {
 

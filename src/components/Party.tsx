@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Party.css';
+import '../styles/Party.css';
 import Servant from './Servant';
 import servantFetch from '../data/servantFetch';
 
@@ -158,14 +158,17 @@ const Party = ({formData, region}) => {
   ))
 
   return (
-  <main>
-    <div className='party'>
-      {servantsDisplay}
-    </div>
-    <div className='buttonHolder'>
-      <button onClick={() => handleClick(true)} className='button'> Randomize Party</button>
-    </div>
-  </main>
+  // <main>
+  //   <div className='party'>
+  //     {servantsDisplay}
+  //   </div>
+  //   <div className='buttonHolder'>
+  //     <button onClick={() => handleClick(true)} className='button'> Randomize Party</button>
+  //   </div>
+  // </main>
+  <>
+    <p> Hello World! </p>
+  </>
   );
   
 }

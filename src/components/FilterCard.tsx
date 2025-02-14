@@ -1,4 +1,4 @@
-import "./FilterCard.css";
+import "../styles/FilterCard.css";
 
 const FilterCard = (props) => {
   const { filters, setFilters } = props;

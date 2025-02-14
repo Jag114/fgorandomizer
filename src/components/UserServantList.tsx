@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./UserServantList.css";
+import "../styles/UserServantList.css";
 import ServantCard from "./ServantCard";
 import FilterList from "./UserServantListFilters"
 import { createContext, useState } from "react";

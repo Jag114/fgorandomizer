@@ -1,4 +1,4 @@
-import './Servant.css';
+import '../styles/Servant.css';
 import React from 'react';
 import rarityStarConverter from '../data/rarityStarConverter';
 import capitalizeString from '../data/capitalizeString';

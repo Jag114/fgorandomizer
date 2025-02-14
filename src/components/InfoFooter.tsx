@@ -1,4 +1,4 @@
-import './InfoFooter.css';
+import '../styles/InfoFooter.css';
 import React from 'react';
 
 const InfoFooter = () => {

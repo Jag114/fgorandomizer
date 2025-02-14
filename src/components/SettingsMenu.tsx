@@ -1,4 +1,4 @@
-import "./SettingsMenu.css";
+import "../styles/SettingsMenu.css";
 import servantFetch from '../data/servantFetch';
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";

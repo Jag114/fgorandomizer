@@ -1,4 +1,4 @@
-import "./FilterMenu.css";
+import "../styles/FilterMenu.css";
 import rarityStarConverter from "../data/rarityStarConverter";
 import checkDuplicates from "../data/checkDuplicatesInArr";
 import removeSpaceFromString from "../data/removeSpacesFromString";
