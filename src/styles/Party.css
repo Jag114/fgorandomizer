@@ -1,38 +1,20 @@
-@media screen and (max-width: 700px) {
-    .party{
-        height: 230px; 
-        display: flex;
-        justify-content: center; 
-        scale: 0.6;
-    }
+.party-container {
+  width: 90vw;
+  /* min-width: 30vw;
+  max-width: 70vw; */
+  height: 40vh;
+  background-color: whitesmoke;
+  margin: auto;
+  margin-top: 2rem;
+  clip-path: polygon(
+    20px 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0 calc(100% - 20px),
+    0 20px
+  );
+  display: flex;
 }
-
-.button{
-    height: 2rem;
-    width: 15rem;
-    border-radius: 10%;
-    font-size: 1.2rem;
-    float: left;
-    border: none;
-    background-color: gold;
-    font-weight: bold;
-    cursor:pointer;
-}
-
-.button:hover{
-    background-color: rgba(255, 215, 0, .6);
-}
-
-.buttonHolder{
-    height: 20px;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-}
-
-.party{
-    height: 230px; 
-    display: flex;
-    justify-content: center;
-} 
-

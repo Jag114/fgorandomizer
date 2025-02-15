@@ -1,11 +1,25 @@
-.servantContainer {
+.servant-container {
   float: left;
   text-align: center;
   border-style: solid;
   border-width: 2px;
-  border-collapse: collapse;
-  margin: 10px;
-  padding: 10px;
+  width: 15%;
+  margin: auto;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  clip-path: polygon(
+    20px 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0 calc(100% - 20px),
+    0 20px
+  );
+  display: flexbox;
+  flex-direction: column;
+  font-size: 1rem;
 }
 
 .black-border {
@@ -29,21 +43,7 @@
   background: linear-gradient(0deg, rgba(144,122,19,1) 0%, rgba(255,215,0,1) 60%, rgba(144,122,19,1) 100%);
 }
 
-.servantRarity {
-  font-size: 30px;
-  text-align: center;
-}
-
-.servantIcon {
-  border-radius: 10px;
-}
-
-.randomize-button{
-  margin-top: 1rem;
-  height: 20%;
-  font-size: 1rem;
-  color: #10316c;
-  border-radius: 30%;
-  border: none;
-  cursor:pointer;
+.servant-container-class{
+  display: flexbox;
+  margin-right: 100%;
 }

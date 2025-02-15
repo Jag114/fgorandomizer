@@ -21,16 +21,28 @@ const Servant = (props) => {
         break;
     }
   }
-
-  const classNames = `servantContainer ${borderColor(props.servantInfo.rarity)}`;
+  const classNames = `servantContainer ${borderColor(props?.servantInfo?.rarity)}`;
   
+  const testServantArray = [
+    
+  ]
+
   return (
-    <div className={classNames}>
-      <div className='servantClass'>  {capitalizeString(props.servantInfo.className)} </div>
-      <img src={`https://static.atlasacademy.io/JP/Faces/f_${props.servantInfo.icon}3.png`} alt='Servant Icon' width='100' height='100' className='servantIcon'></img>
-      <div className='servantName'> {props.servantInfo.name} </div>
-      <div className='servantRarity'>  {rarityStarConverter(props.servantInfo.rarity)}</div>
-      <button onClick={() => props.handleClick(false, props.number)} className='randomize-button'> Randomize </button>
+    // <div className={classNames}>
+    //   <div className='servantClass'>  {capitalizeString(props.servantInfo.className)} </div>
+    //   <img src={`https://static.atlasacademy.io/JP/Faces/f_${props.servantInfo.icon}3.png`} alt='Servant Icon' width='100' height='100' className='servantIcon'></img>
+    //   <div className='servantName'> {props.servantInfo.name} </div>
+    //   <div className='servantRarity'>  {rarityStarConverter(props.servantInfo.rarity)}</div>
+    //   <button onClick={() => props.handleClick(false, props.number)} className='randomize-button'> Randomize </button>
+    // </div>
+    <div className="servant-container gold-border">
+      <div className="servant-container-class">
+        <img src="../../public/icons/saber_icon.png"></img>
+        <p> Class </p>
+      </div>
+      <p> Rarity </p>
+      <img src="../../public/saber.png"></img>
+      <p> Name </p>
     </div>
   );
 

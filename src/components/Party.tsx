@@ -166,9 +166,14 @@ const Party = ({formData, region}) => {
   //     <button onClick={() => handleClick(true)} className='button'> Randomize Party</button>
   //   </div>
   // </main>
-  <>
-    <p> Hello World! </p>
-  </>
+  <div className="party-container">
+    <Servant/>
+    <Servant/>
+    <Servant/>
+    <Servant/>
+    <Servant/>
+    <Servant/>
+  </div>
   );
   
 }
