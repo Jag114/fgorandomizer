@@ -1,16 +1,27 @@
+:root{
+  all: unset;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, Verdana, Geneva, Tahoma,
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 2rem;
   height: 100%;
   width: 100%;
-  background-color:  rgba(19, 118, 175, .4);
+  background-color: #598adb;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("./styles/singularity.jpeg") no-repeat center center;
+  background-size: cover;
+  z-index: -1;
 }

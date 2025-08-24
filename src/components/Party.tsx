@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Party.css';
+import '../styles/Party.css';
 import Servant from './Servant';
 import servantFetch from '../data/servantFetch';
 
@@ -23,8 +23,8 @@ import servantFetch from '../data/servantFetch';
 
     * - may not be in final version
 */
-const Party = ({formData, region}) => {
-  
+const Party = ({ formData, region }) => {
+
   //default servant template
   const servant = {
     id: 0,
@@ -34,12 +34,12 @@ const Party = ({formData, region}) => {
     rarity: 5,
   }
 
-  if(!localStorage.getItem(`userProfile-${region}`)){
+  if (!localStorage.getItem(`userProfile-${region}`)) {
     localStorage.setItem(`userProfile-${region}`, JSON.stringify([]));
   }
-  
-  const [ servantList, setServantList ] = useState([
-    servant,servant,servant,servant,servant
+
+  const [servantList, setServantList] = useState([
+    servant, servant, servant, servant, servant
   ])
 
   /*checks if servants are duplicated,
@@ -52,7 +52,7 @@ const Party = ({formData, region}) => {
     let arrID = []
     let breakNr = 0;
     let i;
-    
+
     const savedProfile = [...JSON.parse(localStorage.getItem(`userProfile-${region}`)).map(e => parseInt(e))];//ids are saved as strings
 
     const usedIDArr = servantList.map(s => { //ids used in party on screen
@@ -61,7 +61,7 @@ const Party = ({formData, region}) => {
     let availableIDArr = data.data.map(e => { //ids from all servants currently available
       return e.collectionNo;
     })
-    if(savedProfile.length > 0){
+    if (savedProfile.length > 0) {
       availableIDArr = availableIDArr.filter(e => { //ids from all servants currently available - servants not included in users profile
         return savedProfile.includes(e);
       })
@@ -70,37 +70,37 @@ const Party = ({formData, region}) => {
       return usedIDArr.indexOf(id) === -1;
     })
 
-    while(arrID.length < 5){
-      if(breakNr > 1000) break;
+    while (arrID.length < 5) {
+      if (breakNr > 1000) break;
       i = Math.floor(Math.random() * availableIDArr.length); //arr index, not id nr
-      if(data.length === 1){
+      if (data.length === 1) {
         arrID.push(i);
       }
-      if(multi === false){
+      if (multi === false) {
         i = Math.floor(Math.random() * filteredAvailableIDArr.length);//arr index, not id nr
         const chosenID = filteredAvailableIDArr[i];
-        if(usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false){
+        if (usedIDArr.includes(filteredAvailableIDArr[i].collectionNo) === false) {
           data.data.forEach(e => {
-            if(e.collectionNo === chosenID){
+            if (e.collectionNo === chosenID) {
               arrID.push(data.data.indexOf(e));
             }
           })
         }
         return arrID;
       }
-      
-        const chosenID = availableIDArr[i];
-        data.data.forEach(e => {
-          if(e.collectionNo === chosenID){
-            if(arrID.includes(data.data.indexOf(e)) === false){
-              arrID.push(data.data.indexOf(e));
-            }
+
+      const chosenID = availableIDArr[i];
+      data.data.forEach(e => {
+        if (e.collectionNo === chosenID) {
+          if (arrID.includes(data.data.indexOf(e)) === false) {
+            arrID.push(data.data.indexOf(e));
           }
-        })
-      
+        }
+      })
+
       breakNr++;
     }
-    console.log("Arr ID: ",arrID);
+    console.log("Arr ID: ", arrID);
     return arrID;
   }
 
@@ -111,14 +111,14 @@ const Party = ({formData, region}) => {
 
   const handleClick = (multi, number) => {
     servantFetch(formData, region).then(data => {
-      if(multi === true && data.length < 5){
+      if (multi === true && data.length < 5) {
         return alert("Too few servants, need more than 5, " + data.length + " chosen now")
       }
-      else if(data.length < 1){
+      else if (data.length < 1) {
         return alert("No servants to choose from, check region and filter settings")
       }
       const usedID = checkIfDuplicate(data, multi);
-      if(number !== undefined){ //single
+      if (number !== undefined) { //single
         usedID.forEach(e => {
           setServantList(prevServantList => {
             prevServantList[number] = {
@@ -127,12 +127,12 @@ const Party = ({formData, region}) => {
               icon: data.data[e].id,
               className: data.data[e].className,
               rarity: data.data[e].rarity,
-          }
-          return [...prevServantList]
+            }
+            return [...prevServantList]
+          })
         })
-        })
-      }else{ //multi
-        usedID.forEach((e,nr) => {
+      } else { //multi
+        usedID.forEach((e, nr) => {
           setServantList(prevServantList => {
             prevServantList[nr] = {
               id: data.data[e].collectionNo,
@@ -140,33 +140,41 @@ const Party = ({formData, region}) => {
               icon: data.data[e].id,
               className: data.data[e].className,
               rarity: data.data[e].rarity,
-          }
-          return [...prevServantList]
-        })
+            }
+            return [...prevServantList]
+          })
         })
       }
     })
   }
-  
-  const servantsDisplay = servantList.map((e,i) => (
+
+  const servantsDisplay = servantList.map((e, i) => (
     <Servant
-      key = {i} 
-      number = {i}
-      handleClick = {handleClick}
-      servantInfo = {e}
+      key={i}
+      number={i}
+      handleClick={handleClick}
+      servantInfo={e}
     />
   ))
 
   return (
-  <main>
-    <div className='party'>
-      {servantsDisplay}
+    // <main>
+    //   <div className='party'>
+    //     {servantsDisplay}
+    //   </div>
+    //   <div className='buttonHolder'>
+    //     <button onClick={() => handleClick(true)} className='button'> Randomize Party</button>
+    //   </div>
+    // </main>
+    <div className="party-container">
+      <Servant />
+      <Servant />
+      <Servant />
+      <Servant />
+      <Servant />
+      <Servant />
     </div>
-    <div className='buttonHolder'>
-      <button onClick={() => handleClick(true)} className='button'> Randomize Party</button>
-    </div>
-  </main>
   );
-  
+
 }
 export default Party; 

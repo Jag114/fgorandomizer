@@ -1,4 +1,4 @@
-import "./UserServantList.css";
+import "../styles/UserServantList.css";
 import rarityStarConverter from "../data/rarityStarConverter";
 import capitalizeString from "../data/capitalizeString";
 

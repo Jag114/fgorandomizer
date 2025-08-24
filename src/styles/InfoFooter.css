@@ -1,0 +1,16 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 85%;
+  height: 15%;
+  background-color: rgba(122, 175, 255, 0.5);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2rem 2rem 0 0;
+
+  box-shadow: -1px -1px 10px rgba(0, 0, 0, 0.8);
+}

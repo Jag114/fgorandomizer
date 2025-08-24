@@ -4,7 +4,7 @@ const rarityStarConverter = (length) => {
   }
   let stars = "";
   while (length > 0) {
-    stars += "⋆";
+    stars += "★";
     length--;
   }
   return stars;

@@ -1,0 +1,22 @@
+.party-container {
+  width: 70rem;
+  /* min-width: 30vw;
+  max-width: 70vw; */
+  height: 25rem;
+  background-color: rgb(236, 236, 236);
+  margin: auto;
+  margin-top: 2rem;
+  clip-path: polygon(
+    20px 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0 calc(100% - 20px),
+    0 20px
+  );
+  display: flex;
+  position: relative;
+  overflow: visible;
+}
