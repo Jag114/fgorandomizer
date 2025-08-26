@@ -44,15 +44,21 @@ const Servant = (props: any) => {
       backgroundImage: `url(${backgroundServant}.png)`,
       backgroundRepeat: "no-repeat",
     }}>
+
       <div className="servant-container-class">
         <img src="../../public/icons/saber_icon.png"></img>
         <p> {servantData.className} </p>
       </div>
+
       <p style={{
         color: "gold",
         fontSize: "1rem"
       }}> {rarityStarConverter(servantData.rarity)} </p>
-      <p> {servantData.name} </p>
+
+
+      <div className="servant-container-footer">
+        <p> {servantData.name} </p>
+      </div>
     </div>
   );
 
