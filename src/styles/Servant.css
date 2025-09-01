@@ -60,6 +60,8 @@
     rgba(0, 0, 0, 1) 100%
   );
   color: white;
+  -webkit-text-stroke: 0.6px black;
+  font-weight: bold;
 }
 
 .bronze-border {
@@ -70,6 +72,9 @@
     rgba(193, 170, 136, 1) 60%,
     rgba(107, 94, 75, 1) 100%
   );
+  color: rgba(107, 94, 75, 1);
+  -webkit-text-stroke: 0.6px black;
+  font-weight: bold;
 }
 
 .silver-border {
@@ -80,6 +85,9 @@
     rgba(189, 189, 189, 1) 60%,
     rgba(121, 121, 121, 1) 100%
   );
+  color: silver;
+  -webkit-text-stroke: 0.6px black;
+  font-weight: bold;
 }
 
 .gold-border {

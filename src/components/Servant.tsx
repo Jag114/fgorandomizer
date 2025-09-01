@@ -1,11 +1,14 @@
 import "../styles/Servant.css";
-import React from "react";
-import rarityStarConverter from "../data/rarityStarConverter";
-import capitalizeString from "../data/capitalizeString";
+import rarityStarConverter from "../data/rarityStarConverter.ts";
+import capitalizeString from "../data/capitalizeString.ts";
 
-import servantData from "../data/saber.json";
+import { ServantComponentProps } from "../data/dataTypes.ts";
 
-const Servant = (props: any) => {
+interface ServantData{
+  data: ServantComponentProps
+}
+
+const Servant = ({data}: ServantData) => {
   const borderColor = (rarity: number) => {
     switch (rarity) {
       case 0:
@@ -22,12 +25,9 @@ const Servant = (props: any) => {
         break;
     }
   };
-  const classNames = `servantContainer ${borderColor(
-    props?.servantInfo?.rarity
-  )}`;
-  const border = `servant-container ${borderColor(servantData?.rarity)}`;
 
-  const testServantArray = [];
+  const border = `servant-container ${borderColor(data?.rarity)}`;
+  console.log(border)
 
   const backgroundServant = "../../public/icons/saber_party_img";
 
@@ -47,8 +47,8 @@ const Servant = (props: any) => {
       }}
     >
       <div className="servant-container-class">
-        <img src="../../public/icons/saber_icon.png"></img>
-        <p> {servantData.className} </p>
+        <img src={`../../public/icons/${data.className}_icon.png`}></img>
+        <p> {capitalizeString(data.className)} </p>
       </div>
 
       <p
@@ -57,13 +57,13 @@ const Servant = (props: any) => {
           fontSize: "1rem",
         }}
       >
-        {rarityStarConverter(servantData.rarity)}
+        {rarityStarConverter(data.rarity)}
       </p>
 
       <div id="mask" className="servant-container-footer"></div>
 
       <div className="servant-container-footer">
-        <p> {servantData.name} </p>
+        <p> {data.name} </p>
       </div>
     </div>
   );

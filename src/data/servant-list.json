@@ -1,0 +1,37 @@
+[
+  {
+    "id": 100100,
+    "collectionNo": 2,
+    "name": "Altria Pendragon",
+    "className": "saber",
+    "rarity": 5
+  },
+  {
+    "id": 100101,
+    "collectionNo": 3,
+    "name": "Altria Bendragon",
+    "className": "moonCancer",
+    "rarity": 1
+  },
+  {
+    "id": 100102,
+    "collectionNo": 4,
+    "name": "Altria Rendragon",
+    "className": "berserker",
+    "rarity": 3
+  },
+  {
+    "id": 100103,
+    "collectionNo": 5,
+    "name": "Altria Fendragon",
+    "className": "alterEgo",
+    "rarity": 2
+  },
+  {
+    "id": 100104,
+    "collectionNo": 6,
+    "name": "Altria Lendragon",
+    "className": "lancer",
+    "rarity": 0
+  }
+]

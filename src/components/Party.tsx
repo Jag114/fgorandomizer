@@ -2,11 +2,14 @@ import { useState } from 'react';
 import '../styles/Party.css';
 import Servant from './Servant';
 import servantFetch from '../data/servantFetch';
+import servantData from "../data/servant-list.json";
+
 
 /*
   TODO:
     1. settings
-      I*. choose cost
+      I*. choose cosimport { ServantComponentProps } from '../data/dataTypes';
+t
     2. appearance
       I. finish desktop viewport
         A. fancy font*
@@ -167,12 +170,9 @@ const Party = ({ formData, region }) => {
     //   </div>
     // </main>
     <div className="party-container">
-      <Servant />
-      <Servant />
-      <Servant />
-      <Servant />
-      <Servant />
-      <Servant />
+      {servantData.map((servant, i) => {
+        return <Servant key={i} data={servant} />;
+      })}
     </div>
   );
 

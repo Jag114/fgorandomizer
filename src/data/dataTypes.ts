@@ -1,5 +1,7 @@
 export interface ServantComponentProps {
-  region: string;
-  profile: any;
-  setProfile: any;
+  id: number;
+  collectionNo: number;
+  name: string;
+  className: string;
+  rarity: number;
 }
