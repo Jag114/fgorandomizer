@@ -1,6 +1,6 @@
 function rarityStarConverter(length:number):string {
   if (length === 0) {
-    return "";
+    return "-";
   }
   let stars = "";
   while (length > 0) {

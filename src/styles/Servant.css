@@ -12,7 +12,6 @@
   flex-direction: column;
   font-size: 1rem;
   position: relative;
-  overflow: visible;
   -webkit-text-stroke: 1px black;
 }
 
@@ -103,9 +102,33 @@
   font-weight: bold;
 }
 
-.servant-container-class {
-  position: absolute;
-  top: -5%;
-  left: -5%;
+.servant-container-header {
+  position: relative;
   z-index: 10;
+  width: 100%;
+  height: 20%;
+  display: flex;
+}
+
+.servant-container-header-class {
+  position: absolute;
+  width: 60%;
+  top: -10%;
+  left: -10%;
+  align-items: center;
+  justify-content: center;
+}
+
+.servant-container-header-class > p {
+  margin: -15%;
+}
+
+.servant-container-header-rarity {
+  color: gold;
+  font-size: 1rem;
+  margin-left: auto;
+  margin-right: 5%;
+  height: fit-content;
+  width: fit-content;
+  margin-top: 20%;
 }
