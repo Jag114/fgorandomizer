@@ -1,13 +1,13 @@
 import '../styles/InfoFooter.css';
-import Button from "./Button"
+import LinkButton from "./LinkButton"
 import React from 'react';
 
 const InfoFooter = () => {
   
   return (
    <footer>
-    <Button text="Made by jag114" url="https://github.com/Jag114"/>
-    <Button text="Servant data provided by atlasacademy" url="https://apps.atlasacademy.io/db/"/>
+    <LinkButton text="Made by jag114" url="https://github.com/Jag114" icon="github"/>
+    <LinkButton text="Servant data provided by atlasacademy" url="https://apps.atlasacademy.io/db/" icon="atlas"/>
    </footer>
   );
 

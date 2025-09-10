@@ -29,7 +29,7 @@ const Servant = ({ data }: ServantData) => {
   const border = `servant-container ${borderColor(data?.rarity)}`;
   console.log(border);
 
-  const backgroundServant = "../../public/icons/saber_party_img";
+  const backgroundServant = "/icons/saber_party_img";
 
   return (
     // <div className={classNames}>
@@ -48,7 +48,7 @@ const Servant = ({ data }: ServantData) => {
     >
       <div className="servant-container-header">
         <div className="servant-container-header-class">
-          <img src={`../../public/icons/${data.className}_icon.png`}></img>
+          <img src={`/icons/${data.className}_icon.png`}></img>
           <p> {capitalizeString(data.className)} </p>
         </div>
 

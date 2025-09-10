@@ -36,7 +36,7 @@
 #mask {
   height: 30%;
   top: 70%;
-  background-image: url("../../public/icons/servant-footer-bg.svg");
+  background-image: url("/icons/servant-footer-bg.svg");
   background-size: cover;
   background-repeat: no-repeat;
 
