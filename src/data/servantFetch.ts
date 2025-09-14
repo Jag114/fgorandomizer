@@ -11,7 +11,7 @@ import cacheImage from "./cacheImage";
 
 const API_URL = "https://api.atlasacademy.io/export"
 
-async function fetchServant(settings, region) {
+async function fetchServantOld(settings, region) {
   let url = region === "na" ? `${API_URL}/NA/basic_servant.json` : `${API_URL}/JP/basic_servant_lang_en.json`;
   console.log("Current region: ", region, ", Current url: ", url);
   let data = [];
@@ -62,6 +62,15 @@ async function fetchServant(settings, region) {
   cacheImage(data); 
   console.log(modifiedData);
   return { data: modifiedData, length: modifiedData.length };
+}
+
+type Props = {
+  region: string;
+  //filters object
+};
+
+async function fetchServant(){
+
 }
 
 export default fetchServant;

@@ -1,0 +1,30 @@
+.randomize-button {
+  all: unset;
+  width: 8rem;
+  height: 3.5rem;
+  background-color: #ba9e00;
+  background: radial-gradient(
+    circle,
+    rgba(186, 158, 0, 1) 0%,
+    rgba(255, 215, 0, 1) 100%
+  );
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
+  color: white;
+  -webkit-text-stroke: 0.5px black;
+  user-select: none;
+}
+
+.randomize-button > span {
+  display: inline-block;
+  transform: scaleX(0.7);
+  transform-origin: center center;
+}

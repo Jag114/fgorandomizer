@@ -33,7 +33,7 @@
   justify-content: center;
 }
 
-#mask {
+.servant-container-mask {
   height: 30%;
   top: 70%;
   background-image: url("/icons/servant-footer-bg.svg");
@@ -130,5 +130,5 @@
   margin-right: 5%;
   height: fit-content;
   width: fit-content;
-  margin-top: 20%;
+  margin-top: 5%;
 }

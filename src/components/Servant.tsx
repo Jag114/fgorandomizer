@@ -1,3 +1,5 @@
+import React from "react";
+
 import "../styles/Servant.css";
 import rarityStarConverter from "../data/rarityStarConverter.ts";
 import capitalizeString from "../data/capitalizeString.ts";
@@ -9,6 +11,7 @@ interface ServantData {
 }
 
 const Servant = ({ data }: ServantData) => {
+  console.log("Rendered: " + data.name);
   const borderColor = (rarity: number) => {
     switch (rarity) {
       case 0:
@@ -22,12 +25,11 @@ const Servant = ({ data }: ServantData) => {
       case 5:
         return "gold-border";
       default:
-        break;
+        return "";
     }
   };
 
   const border = `servant-container ${borderColor(data?.rarity)}`;
-  console.log(border);
 
   const backgroundServant = "/icons/saber_party_img";
 
@@ -57,7 +59,7 @@ const Servant = ({ data }: ServantData) => {
         </p>
       </div>
 
-      <div id="mask" className="servant-container-footer"></div>
+      <div className="servant-container-footer servant-container-mask"></div>
 
       <div className="servant-container-footer">
         <p> {data.name} </p>
@@ -66,4 +68,4 @@ const Servant = ({ data }: ServantData) => {
   );
 };
 
-export default Servant;
+export default React.memo(Servant);

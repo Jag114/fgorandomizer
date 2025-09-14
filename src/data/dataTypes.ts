@@ -5,3 +5,7 @@ export interface ServantComponentProps {
   className: string;
   rarity: number;
 }
+
+export interface ServantFilters {
+
+}

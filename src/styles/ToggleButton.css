@@ -1,0 +1,36 @@
+.filter-checkbox {
+  display: none;
+}
+
+
+.filter-button-wrapper{
+  position: relative;
+  width: 5rem;
+  height: 2rem;
+  background-color: gold;
+  box-sizing: border-box;
+  clip-path: polygon(20% 0, 80% 0, 100% 50%, 80% 100%, 20% 100%, 0 50%);
+}
+
+.filter-button {
+  all: unset;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(5rem - 2px);
+  height: calc(2rem - 2px);
+  background-color: rgba(0, 0, 255, 0.8);
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  clip-path: polygon(20% 0, 80% 0, 100% 50%, 80% 100%, 20% 100%, 0 50%);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.filter-checkbox:checked + .filter-button {
+  background-color: rgba(239, 162, 0, 0.9);
+}

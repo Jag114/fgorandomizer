@@ -1,22 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Party from './components/Party.tsx';
-import SettingsMenu from './components/SettingsMenu.js';
-import UserServantList from './components/UserServantList.js';
-import InfoFooter from "./components/InfoFooter.js";
-import ServantCard from "./components/ServantCard.tsx"
-
-import useSettings from './hooks/useSettings.js';
 import React from "react";
 
-const App = () => {
+import Party from "./components/Party.tsx";
+import InfoFooter from "./components/InfoFooter.tsx";
 
+const App = () => {
   return (
     <>
-      <Party formData={undefined} region={undefined}/>
-      <InfoFooter/>
+      <Party />
+      <InfoFooter />
     </>
-  )
+  );
 
   //return <ServantCard region="na" profile={null} setProfile={null}/>
   // const [formData, setFormData, region, setRegion ] = useSettings()
@@ -30,12 +24,12 @@ const App = () => {
   //           <SettingsMenu formData={formData} setFormData={setFormData} region={region} setRegion={setRegion} />
   //           <InfoFooter/>
   //         </>
-  //       }/> 
+  //       }/>
   //       <Route path="/profile" element={<UserServantList region={region} />}/>
   //     </Routes>
   //   </BrowserRouter>
 
   // );
-}
+};
 
 export default App;
